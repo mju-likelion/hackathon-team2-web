@@ -15,6 +15,7 @@
 <div align=center>
   <h2>실행 방법</h2>
 </div>
+
 ```bash
 $ git clone https://github.com/mju-likelion/hackathon-team2-web.git
 $ cd 파일명
@@ -56,6 +57,7 @@ $ yarn start
 <div align=center>
 	<h2>폴더(파일) 구조</h2>
 </div>
+
 ```
 ├── 📂 public
 │
