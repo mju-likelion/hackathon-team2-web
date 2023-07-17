@@ -3,17 +3,17 @@
 </div>
 
 <div align=center>
-  <h2>프로젝트</h2>
+  <h2>Project</h2>
   <p>~프로젝트 설명~</p>
 </div>
 
 <div align=center>
-  <h2>주요 기능</h2>
+  <h2>Main Function</h2>
   <p>주요 기능 설명</p>
 </div>
 
 <div align=center>
-  <h2>실행 방법</h2>
+  <h2>How to start?</h2>
 </div>
 
 ```bash
@@ -46,7 +46,7 @@ $ yarn start
 </div>
 
 <div align=center>
-	<h2>팀원(웹) </h2>
+	<h2>Developers (WEB) </h2>
 </div>
 
 |               **김동영**               |                 **이진혁**                  |    
@@ -56,7 +56,7 @@ $ yarn start
 
 
 <div align=center>
-	<h2>폴더(파일) 구조</h2>
+	<h2>File Tree</h2>
 </div>
 
 ```
@@ -82,7 +82,7 @@ $ yarn start
 
 
 <div align=center>
-	<h2>컨벤션</h2>
+	<h2>Convention</h2>
 </div>
 
 ### 🤝 Naming Rule (미정)
