@@ -48,6 +48,9 @@ $ yarn start
 <div align=center>
 	<h2>팀</h2>
 </div>
+|               **김동영**               |                 **이진혁**                  |    
+| :------------------------------------: | :----------------------------------------: | 
+| [@wwweric12](https://github.com/wwweric12) | [@constantly-dev](https://github.com/constantly-dev) | 
 
 <div align=center>
 	<h2>파일 구조</h2>
