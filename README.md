@@ -3,19 +3,18 @@
 </div>
 
 <div align=center>
-  <h1>프로젝트</h1>
+  <h2>프로젝트</h2>
   <p>~프로젝트 설명~</p>
 </div>
 
 <div align=center>
-  <h1>주요 기능</h1>
+  <h2>주요 기능</h2>
   <p>주요 기능 설명</p>
 </div>
 
 <div align=center>
-  <h1>실행 방법</h1>
+  <h2>실행 방법</h2>
 </div>
-
 ```bash
 $ git clone https://github.com/mju-likelion/hackathon-team2-web.git
 $ cd 파일명
@@ -24,7 +23,7 @@ $ yarn start
 ```
 
 <div align=center>
-  <h1>Stacks</h1>
+  <h2>Stacks</h2>
   
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
@@ -46,20 +45,50 @@ $ yarn start
 </div>
 
 <div align=center>
-	<h2>팀</h2>
+	<h2>팀원(웹) </h2>
 </div>
 |               **김동영**               |                 **이진혁**                  |    
 | :------------------------------------: | :----------------------------------------: | 
 | [@wwweric12](https://github.com/wwweric12) | [@constantly-dev](https://github.com/constantly-dev) | 
 
-<div align=center>
-	<h2>파일 구조</h2>
-</div>
+
 
 <div align=center>
-	<h1>컨벤션</h1>
+	<h2>폴더(파일) 구조</h2>
+</div>
+```
+├── 📂 public
+│
+├── 📂 src
+│   ├── 📂 api
+│   ├── 📂 assets
+│   │    └── 📂 images
+│   │
+│   ├── 📂 components
+│   │   
+│   ├── 📂 hooks
+│   ├── 📂 pages
+│   │   
+│   │
+│   └── 📂 styles
+│
+├── 📝 App.css,App.js,index.css,index.js ...
+│
+└── 🛠 package.json,README.md,gitignore...
+```
+
+
+<div align=center>
+	<h2>컨벤션</h2>
 </div>
 
+### 🤝 Naming Rule (미정)
+
+컴포넌트, 파일명 
+변수, 함수 
+폴더명
+파라미터 
+상수 
 
 ### 🤝 Branch Naming Convention
 
