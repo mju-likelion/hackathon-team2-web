@@ -3,17 +3,17 @@
 </div>
 
 <div align=center>
-  <h2>Project</h2>
-  <p>~프로젝트 설명~</p>
+  <h2>❤️Project</h2>
+  <p>프로젝트 설명</p>
 </div>
 
 <div align=center>
-  <h2>Main Function</h2>
+  <h2>🍇 Main Function</h2>
   <p>주요 기능 설명</p>
 </div>
 
 <div align=center>
-  <h2>How to start?</h2>
+  <h2>🤔 How to start?</h2>
 </div>
 
 ```bash
@@ -24,7 +24,7 @@ $ yarn start
 ```
 
 <div align=center>
-  <h2>Stacks</h2>
+  <h2>🐟 Stacks</h2>
   
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
@@ -46,40 +46,13 @@ $ yarn start
 </div>
 
 <div align=center>
-	<h2>Developers (WEB) </h2>
+	<h2>🐹 Developers</h2>
 </div>
 
-|               **김동영**               |                 **이진혁**                  |    
-| :------------------------------------: | :----------------------------------------: | 
-| [@wwweric12](https://github.com/wwweric12) | [@constantly-dev](https://github.com/constantly-dev) | 
-
-
-
-<div align=center>
-	<h2>File Tree</h2>
-</div>
-
-```
-├── 📂 public
-│
-├── 📂 src
-│   ├── 📂 api
-│   ├── 📂 assets
-│   │    └── 📂 images
-│   │
-│   ├── 📂 components
-│   │   
-│   ├── 📂 hooks
-│   ├── 📂 pages
-│   │   
-│   │
-│   └── 📂 styles
-│
-├── 📝 App.css,App.js,index.css,index.js ...
-│
-└── 🛠 package.json,README.md,gitignore...
-```
-
+|<img src="https://github.com/wwweric12.png" width="80">|<img src="https://github.com/constantly-dev.png" width="80">|
+|:---:|:---:|
+|[김동영](https://github.com/wwweric12)|[이진혁](https://github.com/constantly-dev)
+|FrontEnd|FrontEnd|
 
 <div align=center>
 	<h2>Convention</h2>
