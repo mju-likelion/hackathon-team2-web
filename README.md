@@ -1,30 +1,34 @@
 <div align=center>
-	<img src="https://capsule-render.vercel.app/api?type=waving&color=B4EEB4&height=200&section=header&text=team2-web🐲%20&fontSize=50" />	
+	<img src="https://capsule-render.vercel.app/api?type=waving&color=B4EEB4&height=200&section=header&text=team2-web🐲%20&fontSize=80" />	
 </div>
 
 <div align=center>
-  <h2>❤️Project</h2>
+  <h2>Project</h2>
   <p>프로젝트 설명</p>
 </div>
 
 <div align=center>
-  <h2>🍇 Main Function</h2>
+  <h2>Main Function</h2>
   <p>주요 기능 설명</p>
 </div>
 
 <div align=center>
-  <h2>🤔 How to start?</h2>
+  <h2>How to start?</h2>
 </div>
 
 ```bash
+# git clone
 $ git clone https://github.com/mju-likelion/hackathon-team2-web.git
-$ cd 파일명
+
+# installation
 $ yarn install
+
+# development
 $ yarn start
 ```
 
 <div align=center>
-  <h2>🐟 Stacks</h2>
+  <h2>Stacks</h2>
   
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
@@ -57,14 +61,6 @@ $ yarn start
 <div align=center>
 	<h2>Convention</h2>
 </div>
-
-### 🤝 Naming Rule (미정)
-
-컴포넌트, 파일명 
-변수, 함수 
-폴더명
-파라미터 
-상수 
 
 ### 🤝 Branch Naming Convention
 
