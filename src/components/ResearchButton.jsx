@@ -18,20 +18,20 @@ const ResearchButton = () => {
 const ButtonContainer = styled.button`
   width: 162px;
   height: 44px;
-  background-color: ${({ theme }) => {
-    theme.colors.YELLOW;
-  }};
-  border-radius: 50%;
+  padding: 10px 8px;
+  background-color: ${({ theme }) => theme.colors.YELLOW};
+  border-radius: 23px; // 이거 값 물어봐야됨.
 `;
 const ContentWrapper = styled.div`
   width: 146px;
   height: 24px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 const IconWrapper = styled.div`
   width: 24px;
-  height: 24px;
+  height: 100%;
   background-color: #ffffff;
   border-radius: 50%;
   display: flex;
@@ -39,6 +39,8 @@ const IconWrapper = styled.div`
   align-items: center;
 `;
 const ResearchText = styled.div`
+  width: 117px;
+  height: 18px;
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;

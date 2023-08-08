@@ -6,7 +6,7 @@ import { Theme } from './styles/Theme';
 
 const App = () => {
   return (
-    <ThemeProvider theme={Theme} >
+    <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <ResearchButton></ResearchButton>
     </ThemeProvider>
