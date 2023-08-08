@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
         font-family: 'Noto Sans KR';
-
     }
     input, textarea {
       -moz-user-select: auto;
