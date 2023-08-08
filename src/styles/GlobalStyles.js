@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { reset } from 'styled-reset';
 import './GlobalFont.css';
 const GlobalStyle = createGlobalStyle`
     ${reset};
@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     }
     *{
         box-sizing: border-box;
+        font-family: 'Noto Sans KR';
     }
     input, textarea {
       -moz-user-select: auto;
