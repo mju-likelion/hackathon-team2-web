@@ -8,9 +8,7 @@ const ResearchButton = () => {
   return (
     <ButtonContainer onClick={MarkerResearch}>
       <ContentWrapper>
-        <IconWrapper>
-          <Research />
-        </IconWrapper>
+        <Research />
         <ResearchText>이 지역에서 다시 검색</ResearchText>
       </ContentWrapper>
     </ButtonContainer>
@@ -29,15 +27,6 @@ const ContentWrapper = styled.div`
   height: 24px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-`;
-const IconWrapper = styled.div`
-  width: 24px;
-  height: 100%;
-  background-color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
   align-items: center;
 `;
 const ResearchText = styled.p`
