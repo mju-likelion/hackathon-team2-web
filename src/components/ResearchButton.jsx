@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
 const ResearchButton = () => {
+  const MarkerResearch = () => {}; // 마커 데이터 재호출
+
   return (
-    <ButtonContainer>
+    <ButtonContainer onClick={MarkerResearch}>
       <ContentWrapper>
         <IconWrapper>
           <Research></Research>
