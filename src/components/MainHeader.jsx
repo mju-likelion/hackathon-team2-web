@@ -30,6 +30,7 @@ const TitleWrapper = styled.div`
   align-items: center;
 `;
 const Title = styled.div`
+  width: 45px;
   height: 36px;
   font-size: 24px;
   font-weight: 900;
