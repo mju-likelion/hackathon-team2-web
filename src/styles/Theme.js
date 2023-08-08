@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 export const Theme = {
   colors: {
     YELLOW: '#FFE070',
