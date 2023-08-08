@@ -9,7 +9,7 @@ const ResearchButton = () => {
     <ButtonContainer onClick={MarkerResearch}>
       <ContentWrapper>
         <IconWrapper>
-          <Research></Research>
+          <Research />
         </IconWrapper>
         <ResearchText>이 지역에서 다시 검색</ResearchText>
       </ContentWrapper>
@@ -40,7 +40,7 @@ const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const ResearchText = styled.div`
+const ResearchText = styled.p`
   width: 117px;
   height: 18px;
   font-size: 13px;
