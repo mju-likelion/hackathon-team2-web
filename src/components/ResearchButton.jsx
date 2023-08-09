@@ -20,7 +20,7 @@ const ButtonContainer = styled.button`
   height: 44px;
   padding: 10px 8px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
-  border-radius: 23px; // 이거 값 물어봐야됨.
+  border-radius: 999px;
 `;
 const ContentWrapper = styled.div`
   width: 146px;
