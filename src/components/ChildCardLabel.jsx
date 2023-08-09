@@ -10,7 +10,10 @@ const ChildCardLabel = () => {
 
 export default ChildCardLabel;
 
-const LabelContainer = styled.div`
+const LabelContainer = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   padding: 21px 63px;
   border-radius: 999px;
   background: #12e2bd;
