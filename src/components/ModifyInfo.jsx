@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import LogoIcon from '../assets/images/logo-modify-icon.svg';
 
-import LinkComponent from './LinkComponent.jsx';
+import LinkComponent from './LinkComponent';
 
 const ModifyInfo = () => {
   return (
@@ -12,7 +12,7 @@ const ModifyInfo = () => {
           <img src={LogoIcon} alt="logo" />
           <IconText>정보가 잘못됐어요 !</IconText>
         </IconContainer>
-        <LinkComponent text="정보 수정 제안하기" color="#636363" />
+        <LinkComponent color="#636363">정보 수정 제안하기</LinkComponent>
       </ContentBox>
     </ModifyInfoContainer>
   );
@@ -21,7 +21,10 @@ const ModifyInfo = () => {
 export default ModifyInfo;
 
 const ModifyInfoContainer = styled.div`
+  width: 100%;
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
   padding: 16px 18px;
   background-color: #ffe070;
 `;

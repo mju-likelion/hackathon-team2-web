@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import LogoIcon from '../assets/images/logo-design-icon.svg';
 
-import LinkComponent from './LinkComponent.jsx';
+import LinkComponent from './LinkComponent';
 
 const FindMap = () => {
   return (
@@ -12,7 +12,7 @@ const FindMap = () => {
           <img src={LogoIcon} alt="logo-icon" />
           <IconText>여기 가볼래요 !</IconText>
         </IconConatiner>
-        <LinkComponent text="카카오맵으로 길찾기" color="#007DFF" />
+        <LinkComponent color="#007DFF">카카오맵으로 길찾기</LinkComponent>
       </ContentBox>
     </FindMapContainer>
   );
@@ -22,6 +22,7 @@ export default FindMap;
 
 const FindMapContainer = styled.div`
   display: inline-flex;
+  width: 100%;
   height: 240px;
   padding: 16px 24px;
   flex-direction: column;
