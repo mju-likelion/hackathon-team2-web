@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
-import { ReactComponent as LogoIcon } from '../assets/images/logo icon.svg';
+import closeIcon from '../assets/images/large-cancel.svg';
 
-const MainHeader = () => {
+const DetailHeader = () => {
+  const closeDetail = () => {};
   return (
     <Container>
       <TitleWrapper>
-        <Title>모잇</Title>
-        <LogoIcon />
+        <Title>상세정보</Title>
+        <CloseIcon src={closeIcon} onClick={closeDetail} />
       </TitleWrapper>
     </Container>
   );
@@ -15,27 +16,22 @@ const MainHeader = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 46px;
-  padding: 5px 30px;
+  height: 54px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
+  padding: 15px 22px;
 `;
 const TitleWrapper = styled.div`
-  width: 82px;
-  height: 36px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-const Title = styled.p`
-  width: 45px;
-  height: 36px;
-  font-size: 24px;
-  font-weight: 900;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
+const CloseIcon = styled.img`
+  cursor: pointer;
 `;
-
-export default MainHeader;
+const Title = styled.p`
+  color: #ffffff;
+  ${({ theme }) => theme.typographies.mainTitle}
+`;
+export default DetailHeader;

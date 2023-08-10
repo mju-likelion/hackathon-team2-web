@@ -2,10 +2,10 @@ import { styled } from 'styled-components';
 
 import Next from '../assets/images/Next.jsx';
 
-const LinkComponent = ({ text, color }) => {
+const LinkComponent = ({children, color }) => {
   return (
     <LinkContainer color={color}>
-      <LinkText>{text}</LinkText>
+      <LinkText>{children}</LinkText>
       <Next color={color} />
     </LinkContainer>
   );
