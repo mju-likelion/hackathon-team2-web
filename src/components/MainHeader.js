@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import {styled} from 'styled-components';
 
 import { ReactComponent as LogoIcon } from '../assets/images/logo icon.svg';
 

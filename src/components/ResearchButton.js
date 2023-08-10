@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
