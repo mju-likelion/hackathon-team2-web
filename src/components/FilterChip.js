@@ -2,42 +2,55 @@ import { useEffect, useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import CategoryIcon from './CategoryIcon.jsx';
+import CategoryIcon from './CategoryIcon';
 
 const FilterChip = ({ title, category }) => {
   const [isCheck, setIsCheck] = useState(false);
   const [iconColor, setIconColor] = useState('#FFF');
   const [backgroundColor, setBackgroundColor] = useState('#FFF');
+
   useEffect(() => {
-    if (category === 'convenience') {
-      setBackgroundColor('#FFB763');
-    } else if (category === 'japanese') {
-      setBackgroundColor('#5E7FF6');
-    } else if (category === 'chinese') {
-      setBackgroundColor('#E75A5A');
-    } else if (category === 'western') {
-      setBackgroundColor('#33DBBD');
-    } else if (category === 'korean') {
-      setBackgroundColor('#5DB6F5');
-    } else if (category === 'bakery') {
-      setBackgroundColor('#8A6942');
-    } else if (category === 'etc') {
-      setBackgroundColor('#64557C');
-    } else if (category === 'fastfood') {
-      setBackgroundColor('#FF8A00');
+    switch (category) {
+      case 'convenience':
+        setBackgroundColor('#FFB763');
+        break;
+      case 'japanese':
+        setBackgroundColor('#5E7FF6');
+        break;
+      case 'chinese':
+        setBackgroundColor('#E75A5A');
+        break;
+      case 'western':
+        setBackgroundColor('#33DBBD');
+        break;
+      case 'korean':
+        setBackgroundColor('#5DB6F5');
+        break;
+      case 'bakery':
+        setBackgroundColor('#8A6942');
+        break;
+      case 'etc':
+        setBackgroundColor('#64557C');
+        break;
+      case 'fastfood':
+        setBackgroundColor('#FF8A00');
+        break;
+      default:
+        break;
     }
   }, []);
+
   const handleClick = () => {
+    setIsCheck((prev) => !prev);
     if (!isCheck) {
-      setIsCheck((prev) => !prev);
       setIconColor(backgroundColor);
       setBackgroundColor('#FFF');
     } else {
-      setIsCheck((prev) => !prev);
       setBackgroundColor(iconColor);
       setIconColor('#FFF');
     }
   };
+
   return (
     <FilterChipContainer onClick={handleClick} $isCheck={isCheck} color={iconColor}>
       <FilterBox>
