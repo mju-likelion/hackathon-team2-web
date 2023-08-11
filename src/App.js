@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
+import call from './assets/images/call.svg';
+import pin from './assets/images/pin.svg';
+import price from './assets/images/price-icon.svg';
+import time from './assets/images/time.svg';
+import web from './assets/images/web.svg';
+import ModifyDetail from './components/ModifyDetail';
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 
@@ -8,6 +14,7 @@ const App = () => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
+      <ModifyDetail img={call} />
       <Router>
         <Layout>
           <Frame>
