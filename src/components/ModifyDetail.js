@@ -7,7 +7,7 @@ const ModifyDetail = ({ img, children }) => {
     <ModifyContainer>
       <img src={img} alt="icon" />
       <ModifyBox>
-        <ModifyText>영업시간 수정할래요 !</ModifyText>
+        <ModifyText>{children}</ModifyText>
         <Next />
       </ModifyBox>
     </ModifyContainer>
@@ -20,6 +20,7 @@ const ModifyContainer = styled.button`
   padding: 13px 16px;
   display: flex;
   align-items: center;
+  border: 1px solid #d0d0d0;
 `;
 
 const ModifyBox = styled.div`

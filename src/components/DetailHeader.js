@@ -2,12 +2,12 @@ import { styled } from 'styled-components';
 
 import closeIcon from '../assets/images/large-cancel.svg';
 
-const DetailHeader = () => {
+const DetailHeader = ({ children }) => {
   const closeDetail = () => {};
   return (
     <Container>
       <TitleWrapper>
-        <Title>상세정보</Title>
+        <Title>{children}</Title>
         <CloseIcon src={closeIcon} onClick={closeDetail} />
       </TitleWrapper>
     </Container>

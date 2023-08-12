@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
+
+import ModifyInfoPage from './pages/ModifyInfoPage';
+
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 
@@ -11,7 +14,10 @@ const App = () => {
       <Router>
         <Layout>
           <Frame>
-            <Routes>{/* <Route path="/" element={<Map />} /> */}</Routes>
+            <Routes>
+              {/* <Route path="/" element={<Map />} /> */}
+              <Route path="/detail/modify" element={<ModifyInfoPage />} />
+            </Routes>
           </Frame>
         </Layout>
       </Router>
@@ -29,8 +35,4 @@ const Layout = styled.div`
 const Frame = styled.div`
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
