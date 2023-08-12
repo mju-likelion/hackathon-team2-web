@@ -2,29 +2,18 @@ import { styled, css } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const ResearchButton = ({ bgColor, fontColor, position, setIsOpenResearch, isOpenResearch }) => {
-  const MarkerResearch = () => {}; // 마커 데이터 재호출
-
+const ResearchButton = ({ bgColor, fontColor, position }) => {
   return (
-    isOpenResearch && (
-      <ButtonContainer
-        onClick={() => {
-          MarkerResearch;
-          setIsOpenResearch(false);
-        }}
-        bgColor={bgColor}
-        position={position}
-      >
-        {bgColor === '#FFE070' ? (
-          <ContentWrapper>
-            <Research />
-            <ResearchText fontColor={fontColor}>이 지역에서 다시 검색</ResearchText>
-          </ContentWrapper>
-        ) : (
+    <ButtonContainer bgColor={bgColor} position={position}>
+      {bgColor === '#FFE070' ? (
+        <ContentWrapper>
+          <Research />
           <ResearchText fontColor={fontColor}>이 지역에서 다시 검색</ResearchText>
-        )}
-      </ButtonContainer>
-    )
+        </ContentWrapper>
+      ) : (
+        <ResearchText fontColor={fontColor}>이 지역에서 다시 검색</ResearchText>
+      )}
+    </ButtonContainer>
   );
 };
 

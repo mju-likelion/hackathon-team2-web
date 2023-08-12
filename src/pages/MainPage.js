@@ -17,6 +17,7 @@ const MainPage = () => {
     }
   }, [MmValue]);
   // 재검색 버튼 로직
+  const MarkerResearch = () => {}; // 마커 데이터 재호출
 
   return (
     <Container>
@@ -40,12 +41,21 @@ const MainPage = () => {
         }
       />
       <MainHeader />
-      <ResearchButton
-        bgColor={'#FFE070'}
-        position={'absolute'}
-        isOpenResearch={isOpenResearch}
-        setIsOpenResearch={setIsOpenResearch}
-      />
+      {isOpenResearch && (
+        <ReButton
+          onClick={() => {
+            MarkerResearch;
+            setIsOpenResearch(false);
+          }}
+        >
+          <ResearchButton
+            bgColor={'#FFE070'}
+            position={'absolute'}
+            isOpenResearch={isOpenResearch}
+            setIsOpenResearch={setIsOpenResearch}
+          />
+        </ReButton>
+      )}
       {!!MmValue && (
         <>
           <p>
@@ -64,5 +74,5 @@ const Container = styled.div`
   position: relative;
   border: 1px solid black;
 `;
-
+const ReButton = styled.button``;
 export default MainPage;
