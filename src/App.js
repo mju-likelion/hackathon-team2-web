@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
+
 import ModifyInfoPage from './pages/ModifyInfoPage';
+
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 
