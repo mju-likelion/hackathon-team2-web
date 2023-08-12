@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 import CategoryIcon from './CategoryIcon';
 
-const FilterChip = ({ title, category }) => {
+const FilterChip = ({ children, category, filter }) => {
   const [isCheck, setIsCheck] = useState(false);
   const [iconColor, setIconColor] = useState('#FFF');
   const [backgroundColor, setBackgroundColor] = useState('#FFF');
@@ -42,12 +42,21 @@ const FilterChip = ({ title, category }) => {
 
   const handleClick = () => {
     setIsCheck((prev) => !prev);
+
     if (!isCheck) {
       setIconColor(backgroundColor);
       setBackgroundColor('#FFF');
+      filter((prev) => ({
+        ...prev,
+        [category]: true,
+      }));
     } else {
       setBackgroundColor(iconColor);
       setIconColor('#FFF');
+      filter((prev) => ({
+        ...prev,
+        [category]: false,
+      }));
     }
   };
 
@@ -61,7 +70,7 @@ const FilterChip = ({ title, category }) => {
           setBackgroundColor={setBackgroundColor}
         />
         <FilterTitle $isCheck={isCheck} color={backgroundColor}>
-          {title}
+          {children}
         </FilterTitle>
       </FilterBox>
     </FilterChipContainer>
@@ -83,6 +92,7 @@ const FilterBox = styled.div`
 `;
 
 const FilterTitle = styled.div`
+  white-space: nowrap;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
