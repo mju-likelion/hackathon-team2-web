@@ -1,6 +1,6 @@
-import {styled} from 'styled-components';
+import { styled } from 'styled-components';
 
-import { ReactComponent as LogoIcon } from '../assets/images/logo icon.svg';
+import { ReactComponent as LogoIcon } from '../assets/images/logo-icon.svg';
 
 const MainHeader = () => {
   return (
@@ -16,6 +16,9 @@ const MainHeader = () => {
 const Container = styled.div`
   width: 100%;
   height: 46px;
+  position: absolute;
+  top: 0;
+  z-index: 999;
   padding: 5px 30px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
