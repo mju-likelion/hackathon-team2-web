@@ -6,7 +6,6 @@ import ModifyInfoPage from './pages/ModifyInfoPage';
 
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
-
 const App = () => {
   return (
     <ThemeProvider theme={Theme}>
