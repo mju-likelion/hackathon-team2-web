@@ -23,7 +23,7 @@ const DetailToolTip = ({ setIsOpen, data }) => {
             <CancelIcon src={cancelIcon} onClick={closeToolTip} />
           </ContentTop>
           <ContentBottom>
-            <Link to={`https://map.kakao.com/link/to/${data.name},${data.latitude},${data.longitude}`}>
+            <Link to={`/detail/${data.id}`}>
               <MoreIcon src={moreIcon}></MoreIcon>
             </Link>
           </ContentBottom>

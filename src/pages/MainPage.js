@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
-
-import Filters from '../components/Filters';
 import bakery from '../assets/images/bakery-pin.svg';
 import chinese from '../assets/images/chinese-pin.svg';
 import convenience from '../assets/images/convenience-pin.svg';
@@ -14,6 +12,7 @@ import japanese from '../assets/images/japanesefood-pin.svg';
 import korean from '../assets/images/koreanfood-pin.svg';
 import western from '../assets/images/westernfood-pin.svg';
 import DetailToolTip from '../components/DetailToolTip';
+import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 
 const MainPage = () => {
