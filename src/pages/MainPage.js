@@ -17,6 +17,7 @@ import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import ZoomButton from '../components/ZoomButton';
 
+import ResearchButton from '../components/ResearchButton';
 const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -109,6 +110,19 @@ const MainPage = () => {
     const map = mapRef.current;
     map.setLevel(map.getLevel() + 1);
   };
+  const [MmValue, setMmValue] = useState();
+  const [isOpenResearch, setIsOpenResearch] = useState(false);
+  // 최대 최소 위도 경도 -> 버튼 로직
+  useEffect(() => {
+    if (MmValue) {
+      setIsOpenResearch(true);
+    } else {
+      setIsOpenResearch(false);
+    }
+  }, [MmValue]);
+  // 재검색 버튼 로직
+  const MarkerResearch = () => {}; // 마커 데이터 재호출
+
   return (
     <Container>
       <Filters />
@@ -120,6 +134,12 @@ const MainPage = () => {
           height: '100%',
         }}
         level={2} // 지도의 확대 레벨
+        onDragEnd={(map) =>
+          setMmValue({
+            sw: map.getBounds().getSouthWest().toString(),
+            ne: map.getBounds().getNorthEast().toString(),
+          })
+        }
       >
         {LocationData.map((item) => (
           <li key={item.id}>
@@ -157,6 +177,30 @@ const MainPage = () => {
         ))}
       </Map>
       <MainHeader />
+      {isOpenResearch && (
+        <ReButton
+          onClick={() => {
+            MarkerResearch;
+            setIsOpenResearch(false);
+          }}
+        >
+          <ResearchButton
+            bgColor={'#FFE070'}
+            position={'absolute'}
+            isOpenResearch={isOpenResearch}
+            setIsOpenResearch={setIsOpenResearch}
+          />
+        </ReButton>
+      )}
+      {!!MmValue && (
+        <>
+          <p>
+            {'영역좌표 남서쪽 위도, 경도는  ' + MmValue.sw + ' 이고'}
+            <br />
+            {'북동쪽 위도, 경도는  ' + MmValue.ne + '입니다'}
+          </p>
+        </>
+      )}
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
     </Container>
   );
@@ -167,5 +211,5 @@ const Container = styled.div`
   position: relative;
   border: 1px solid black;
 `;
-
+const ReButton = styled.button``;
 export default MainPage;
