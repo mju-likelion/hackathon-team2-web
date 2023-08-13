@@ -15,9 +15,9 @@ import western from '../assets/images/westernfood-pin.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
+import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
 
-import ResearchButton from '../components/ResearchButton';
 const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -136,8 +136,10 @@ const MainPage = () => {
         level={2} // 지도의 확대 레벨
         onDragEnd={(map) =>
           setMmValue({
-            sw: map.getBounds().getSouthWest().toString(),
-            ne: map.getBounds().getNorthEast().toString(),
+            maxLatitude: map.getBounds().getNorthEast().getLat().toString(),
+            maxLongitude: map.getBounds().getNorthEast().getLng().toString(),
+            minLatitude: map.getBounds().getSouthWest().getLat().toString(),
+            minLongitude: map.getBounds().getSouthWest().getLng().toString(),
           })
         }
       >
@@ -192,15 +194,7 @@ const MainPage = () => {
           />
         </ReButton>
       )}
-      {!!MmValue && (
-        <>
-          <p>
-            {'영역좌표 남서쪽 위도, 경도는  ' + MmValue.sw + ' 이고'}
-            <br />
-            {'북동쪽 위도, 경도는  ' + MmValue.ne + '입니다'}
-          </p>
-        </>
-      )}
+
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
     </Container>
   );
