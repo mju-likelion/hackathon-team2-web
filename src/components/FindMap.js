@@ -85,7 +85,6 @@ const StoreCategory = styled.div`
   width: 148px;
   height: 20px;
   font-size: 13px;
-  font-weight: 400;
   line-height: 18px;
   display: flex;
   justify-content: center;
@@ -105,11 +104,10 @@ const UpdateTime = styled.div`
   width: 170px;
   height: 20px;
   font-size: 12px;
-  font-weight: 400;
   line-height: 18px;
   color: ${({ theme }) => theme.colors.GRAY2};
 `;
-//
+
 const MapFindContainer = styled.div`
   display: flex;
   align-items: center;
