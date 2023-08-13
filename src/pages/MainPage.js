@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import bakery from '../assets/images/bakery-pin.svg';
@@ -11,6 +11,7 @@ import fastfood from '../assets/images/fastfood-pin.svg';
 import japanese from '../assets/images/japanesefood-pin.svg';
 import korean from '../assets/images/koreanfood-pin.svg';
 import western from '../assets/images/westernfood-pin.svg';
+import DetailToolTip from '../components/DetailToolTip';
 import MainHeader from '../components/MainHeader';
 
 const MainPage = () => {
@@ -68,19 +69,25 @@ const MainPage = () => {
         }}
         level={3} // 지도의 확대 레벨
       >
-        {LocationData.map((item, index) => (
-          <MapMarker
-            onClick={() => setIsOpen((prev) => !prev)}
-            key={index}
-            position={{ lat: item.latitude, lng: item.longitude }}
-            image={{
-              src: handleCategory(item), // 마커이미지의 주소입니다
-              size: {
-                width: 24,
-                height: 24,
-              }, // 마커이미지의 크기입니다
-            }}
-          ></MapMarker>
+        {LocationData.map((item) => (
+          <li key={item.id}>
+            <MapMarker
+              onClick={() => setIsOpen((prev) => !prev)}
+              position={{ lat: item.latitude, lng: item.longitude }}
+              image={{
+                src: handleCategory(item), // 마커이미지의 주소입니다
+                size: {
+                  width: 24,
+                  height: 24,
+                }, // 마커이미지의 크기입니다
+              }}
+            />
+            {isOpen && (
+              <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
+                <DetailToolTip data={item} setIsOpen={setIsOpen} />
+              </CustomOverlayMap>
+            )}
+          </li>
         ))}
       </Map>
       <MainHeader />
