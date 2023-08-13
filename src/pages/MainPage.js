@@ -1,12 +1,8 @@
-import { useState } from 'react';
-
 import { useRef, useState, useEffect } from 'react';
 
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
-
-import Filters from '../components/Filters';
 import bakery from '../assets/images/bakery-pin.svg';
 import chinese from '../assets/images/chinese-pin.svg';
 import convenience from '../assets/images/convenience-pin.svg';
@@ -14,9 +10,10 @@ import etc from '../assets/images/etc-pin.svg';
 import fastfood from '../assets/images/fastfood-pin.svg';
 import japanese from '../assets/images/japanesefood-pin.svg';
 import korean from '../assets/images/koreanfood-pin.svg';
+import moeat from '../assets/images/type= ui icon, state= disabled.svg';
 import western from '../assets/images/westernfood-pin.svg';
 import DetailToolTip from '../components/DetailToolTip';
-import moeat from '../assets/images/type= ui icon, state= disabled.svg';
+import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import ZoomButton from '../components/ZoomButton';
 
@@ -137,20 +134,20 @@ const MainPage = () => {
                 }, // 마커이미지의 크기입니다
               }}
               ref={mapRef}
-      />
-        {!nowLocation.isLoading && (
-          <MapMarker
-            position={nowLocation.center}
-            image={{
-              src: moeat,
-              size: {
-                width: 60,
-                height: 70,
-              },
-            }}
-          />
-        )}
-      
+            />
+            {!nowLocation.isLoading && (
+              <MapMarker
+                position={nowLocation.center}
+                image={{
+                  src: moeat,
+                  size: {
+                    width: 60,
+                    height: 70,
+                  },
+                }}
+              />
+            )}
+
             {isOpen && (
               <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
                 <DetailToolTip data={item} setIsOpen={setIsOpen} />
