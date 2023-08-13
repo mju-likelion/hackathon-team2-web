@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import cancelIcon from '../assets/images/cancel.svg';
@@ -5,9 +6,6 @@ import arrow from '../assets/images/large-speech.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
 const DetailToolTip = ({ setIsOpen, data }) => {
-  const goDetailPage = () => {
-    navigate('/detail', { state: { key: value } }); // useLocation() - location.state 수신?
-  };
   const closeToolTip = () => {
     setIsOpen(false);
   };
@@ -25,7 +23,9 @@ const DetailToolTip = ({ setIsOpen, data }) => {
             <CancelIcon src={cancelIcon} onClick={closeToolTip} />
           </ContentTop>
           <ContentBottom>
-            <MoreIcon src={moreIcon} onClick={goDetailPage}></MoreIcon>
+            <Link to={`https://map.kakao.com/link/to/${data.name},${data.latitude},${data.longitude}`}>
+              <MoreIcon src={moreIcon}></MoreIcon>
+            </Link>
           </ContentBottom>
         </ContentContainer>
       </Body>
