@@ -104,6 +104,7 @@ const MainPage = () => {
   // 확대 축소 로직
   const zoomIn = () => {
     const map = mapRef.current;
+    console.log(map);
     map.setLevel(map.getLevel() - 1);
   };
   const zoomOut = () => {
@@ -142,6 +143,7 @@ const MainPage = () => {
             minLongitude: map.getBounds().getSouthWest().getLng().toString(),
           })
         }
+        ref={mapRef}
       >
         {LocationData.map((item) => (
           <li key={item.id}>
@@ -155,7 +157,6 @@ const MainPage = () => {
                   height: 24,
                 }, // 마커이미지의 크기입니다
               }}
-              ref={mapRef}
             />
             {!nowLocation.isLoading && (
               <MapMarker
