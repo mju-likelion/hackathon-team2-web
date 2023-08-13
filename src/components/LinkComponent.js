@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import Next from '../assets/images/Next.jsx';
+import Next from '../assets/images/Next';
 
 const LinkComponent = ({ children, color }) => {
   return (

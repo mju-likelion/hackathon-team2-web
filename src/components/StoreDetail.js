@@ -45,7 +45,7 @@ const StoreDetail = ({ address1, address2, link, callNum }) => {
 const AllContainer = styled.div`
   padding: 50px 25px;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.colors.GRAY1};
 `;
 
 const ListContainer = styled.div`
