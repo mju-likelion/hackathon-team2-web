@@ -26,7 +26,7 @@ const App = () => {
 export default App;
 
 const Layout = styled.div`
-  width: 393px;
+  max-width: 393px;
   margin: 0 auto;
 `;
 
