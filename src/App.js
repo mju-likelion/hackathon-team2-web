@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
-
+import MainPage from './pages/MainPage';
 import ModifyInfoPage from './pages/ModifyInfoPage';
-
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 const App = () => {
@@ -14,7 +13,7 @@ const App = () => {
         <Layout>
           <Frame>
             <Routes>
-              {/* <Route path="/" element={<Map />} /> */}
+              <Route path="/" element={<MainPage />} />
               <Route path="/detail/modify" element={<ModifyInfoPage />} />
             </Routes>
           </Frame>

@@ -4,7 +4,7 @@ import cancelIcon from '../assets/images/cancel.svg';
 import arrow from '../assets/images/large-speech.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
-const DetailToolTip = ({ navigate, setIsOpen }) => {
+const DetailToolTip = ({ setIsOpen, data }) => {
   const goDetailPage = () => {
     navigate('/detail', { state: { key: value } }); // useLocation() - location.state 수신?
   };
@@ -12,15 +12,15 @@ const DetailToolTip = ({ navigate, setIsOpen }) => {
     setIsOpen(false);
   };
   return (
-    <Container>
+    <>
       <Body>
         <StoreImg></StoreImg>
         <ContentContainer>
           <ContentTop>
             <ContentList>
-              <StoreName>하이요</StoreName>
-              <StoreAddress1>안녕하세요 저는 이진혁 입니다아아아아아아</StoreAddress1>
-              <StoreAddress2>하이요</StoreAddress2>
+              <StoreName>{data.name}</StoreName>
+              <StoreAddress1>{data.fullAddress}</StoreAddress1>
+              <StoreAddress2>{data.roadNameAddress}</StoreAddress2>
             </ContentList>
             <CancelIcon src={cancelIcon} onClick={closeToolTip} />
           </ContentTop>
@@ -30,18 +30,10 @@ const DetailToolTip = ({ navigate, setIsOpen }) => {
         </ContentContainer>
       </Body>
       <LargeArrow src={arrow} />
-    </Container>
+    </>
   );
 };
-const Container = styled.div`
-  width: 260px;
-  height: 137px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: gray;
-  position: relative;
-`;
+
 const Body = styled.div`
   width: 260px;
   height: 121px;
@@ -117,7 +109,6 @@ const MoreIcon = styled.img`
 
 const LargeArrow = styled.img`
   position: absolute;
-  bottom: 2px;
   left: 50%;
   transform: translateX(-50%); // 너비 고려 중앙 정렬
 `;
