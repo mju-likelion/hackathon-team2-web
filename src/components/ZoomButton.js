@@ -2,21 +2,13 @@ import { styled } from 'styled-components';
 
 import ZoomIn from '../assets/images/zoom-in.svg';
 import ZoomOut from '../assets/images/zoom-out.svg';
-const ZoomButton = () => {
-  const handleZoomIn = () => {
-    // 줌인 버튼 눌렀을때 이벤트
-  };
-
-  const handleZoomOut = () => {
-    //줌 아웃 눌렀을때 이벤트
-  };
-
+const ZoomButton = ({ zoomIn, zoomOut }) => {
   return (
     <ButtonContainer>
-      <ZoomInButton onClick={handleZoomIn}>
+      <ZoomInButton onClick={zoomIn}>
         <img src={ZoomIn} alt="zoom-in" />
       </ZoomInButton>
-      <ZoomOutButton onClick={handleZoomOut}>
+      <ZoomOutButton onClick={zoomOut}>
         <img src={ZoomOut} alt="zoom-out" />
       </ZoomOutButton>
     </ButtonContainer>
@@ -30,12 +22,16 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: -1px;
+  position: absolute;
+  bottom: 40px;
+  right: 22px;
+  z-index: 99;
 `;
 
 const ZoomInButton = styled.button`
   width: 30px;
   height: 30px;
-  margin-bottom: 6px;
 `;
 
 const ZoomOutButton = styled.button`
