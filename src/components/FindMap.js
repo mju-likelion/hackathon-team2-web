@@ -35,7 +35,7 @@ const FindMap = ({ data }) => {
             <IconImg src={LogoIcon}></IconImg>
             <IconText>여기 가볼래요 !</IconText>
           </IconContainer>
-          <a href={`https://map.kakao.com/link/to/${data.name},${data.latitude},${data.longitude}`}>
+          <a href={`https://map.kakao.com/link/to/${data.name},${data.latitude},${data.longitude}`} target="_blank">
             <LinkComponent color="#007DFF">카카오맵으로 길찾기</LinkComponent>
           </a>
         </MapFindContainer>
