@@ -107,6 +107,19 @@ const MainPage = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
+
+
+  // 확대 축소 로직
+  const zoomIn = () => {
+    const map = mapRef.current;
+    console.log(map);
+    map.setLevel(map.getLevel() - 1);
+  };
+  const zoomOut = () => {
+    const map = mapRef.current;
+    map.setLevel(map.getLevel() + 1);
+  };
+
   // 최대 최소 위도 경도 -> 버튼 로직
   useEffect(() => {
     if (MmValue) {
@@ -121,15 +134,6 @@ const MainPage = () => {
     GetPin(MmValue, callBackFunction);
   }; // 마커 데이터 재호출
 
-  // 확대 축소 로직
-  const zoomIn = () => {
-    const map = mapRef.current;
-    map.setLevel(map.getLevel() - 1);
-  };
-  const zoomOut = () => {
-    const map = mapRef.current;
-    map.setLevel(map.getLevel() + 1);
-  };
 
   const callBackFunction = (data) => {
     setLocationData(data);
@@ -154,7 +158,9 @@ const MainPage = () => {
             minLongitude: map.getBounds().getSouthWest().getLng(),
           })
         }
+        ref={mapRef}
       >
+
         {locationData &&
           locationData.map((item, index) => (
             <li key={item.id}>
