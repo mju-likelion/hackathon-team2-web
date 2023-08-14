@@ -5,9 +5,9 @@ import cancelIcon from '../assets/images/cancel.svg';
 import arrow from '../assets/images/large-speech.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
-const DetailToolTip = ({ setIsOpen, data }) => {
+const DetailToolTip = ({ setMarkerOpenStates, data }) => {
   const closeToolTip = () => {
-    setIsOpen(false);
+    setMarkerOpenStates([]);
   };
   return (
     <>
