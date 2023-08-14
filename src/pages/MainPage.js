@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
+import { GetPin } from '../api/GetPin';
 import bakery from '../assets/images/bakery-pin.svg';
 import chinese from '../assets/images/chinese-pin.svg';
 import convenience from '../assets/images/convenience-pin.svg';
@@ -19,21 +20,26 @@ import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
 
 const MainPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const LocationData = [
-    {
-      id: '98de9785-8769-448c-aca7-ab6cad5406a5',
-      name: '알부자알요리전문점',
-      category: '한식',
-      longitude: 127.027820307026,
-      latitude: 37.5007020002887,
-      fullAddress: '역삼동 817-34',
-      roadNameAddress: '서울 강남구 강남대로98길 14',
-      createdAt: '2023-08-04 08:11:51.109',
-      updatedAt: '2023-08-04 08:11:51.109',
+  const [MmValue, setMmValue] = useState({});
+  const [isOpenResearch, setIsOpenResearch] = useState(false);
+  const [markerOpenStates, setMarkerOpenStates] = useState([]);
+  //현재 위치 로직
+  const [nowLocation, setNowLocation] = useState({
+    center: {
+      lat: 37.571009,
+      lng: 126.9789398,
     },
-  ];
+    errMsg: null,
+    isLoading: true,
+  });
+
+  const [locationData, setLocationData] = useState([]);
+
+  const handleClick = (index) => {
+    const updatedMarkerOpenStates = Array(locationData.length).fill(false);
+    updatedMarkerOpenStates[index] = !updatedMarkerOpenStates[index];
+    setMarkerOpenStates(updatedMarkerOpenStates);
+  };
 
   const handleCategory = (data) => {
     switch (data.category) {
@@ -49,7 +55,7 @@ const MainPage = () => {
         return korean;
       case '제과점':
         return bakery;
-      case '기타':
+      case '일반대중음식':
         return etc;
       case '패스트푸드':
         return fastfood;
@@ -58,17 +64,17 @@ const MainPage = () => {
     }
   };
 
-  const mapRef = useRef();
-
-  // 현재 위치 로직
-  const [nowLocation, setNowLocation] = useState({
-    center: {
-      lat: 37.571009,
-      lng: 126.9789398,
-    },
-    errMsg: null,
-    isLoading: true,
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const initialData = await GetPin(MmValue);
+        setLocationData(initialData);
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -101,17 +107,6 @@ const MainPage = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
-  // 확대 축소 로직
-  const zoomIn = () => {
-    const map = mapRef.current;
-    map.setLevel(map.getLevel() - 1);
-  };
-  const zoomOut = () => {
-    const map = mapRef.current;
-    map.setLevel(map.getLevel() + 1);
-  };
-  const [MmValue, setMmValue] = useState();
-  const [isOpenResearch, setIsOpenResearch] = useState(false);
   // 최대 최소 위도 경도 -> 버튼 로직
   useEffect(() => {
     if (MmValue) {
@@ -121,13 +116,30 @@ const MainPage = () => {
     }
   }, [MmValue]);
   // 재검색 버튼 로직
-  const MarkerResearch = () => {}; // 마커 데이터 재호출
+  const MarkerResearch = () => {
+    setIsOpenResearch(false);
+    GetPin(MmValue, callBackFunction);
+  }; // 마커 데이터 재호출
 
+  // 확대 축소 로직
+  const zoomIn = () => {
+    const map = mapRef.current;
+    map.setLevel(map.getLevel() - 1);
+  };
+  const zoomOut = () => {
+    const map = mapRef.current;
+    map.setLevel(map.getLevel() + 1);
+  };
+
+  const callBackFunction = (data) => {
+    setLocationData(data);
+  };
   return (
     <Container>
       <Filters />
       <Map
-        center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+        center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
+        // { lat: nowLocation.center.lat, lng: nowLocation.center.lng }
         style={{
           // 지도의 크기
           width: '100%',
@@ -136,56 +148,51 @@ const MainPage = () => {
         level={2} // 지도의 확대 레벨
         onDragEnd={(map) =>
           setMmValue({
-            maxLatitude: map.getBounds().getNorthEast().getLat().toString(),
-            maxLongitude: map.getBounds().getNorthEast().getLng().toString(),
-            minLatitude: map.getBounds().getSouthWest().getLat().toString(),
-            minLongitude: map.getBounds().getSouthWest().getLng().toString(),
+            maxLatitude: map.getBounds().getNorthEast().getLat(),
+            maxLongitude: map.getBounds().getNorthEast().getLng(),
+            minLatitude: map.getBounds().getSouthWest().getLat(),
+            minLongitude: map.getBounds().getSouthWest().getLng(),
           })
         }
       >
-        {LocationData.map((item) => (
-          <li key={item.id}>
-            <MapMarker
-              onClick={() => setIsOpen((prev) => !prev)}
-              position={{ lat: item.latitude, lng: item.longitude }}
-              image={{
-                src: handleCategory(item), // 마커이미지의 주소입니다
-                size: {
-                  width: 24,
-                  height: 24,
-                }, // 마커이미지의 크기입니다
-              }}
-              ref={mapRef}
-            />
-            {!nowLocation.isLoading && (
+        {locationData &&
+          locationData.map((item, index) => (
+            <li key={item.id}>
               <MapMarker
-                position={nowLocation.center}
+                onClick={() => handleClick(index)}
+                position={{ lat: item.latitude, lng: item.longitude }}
                 image={{
-                  src: moeat,
+                  src: handleCategory(item), // 마커이미지의 주소입니다
                   size: {
-                    width: 60,
-                    height: 70,
-                  },
+                    width: 24,
+                    height: 24,
+                  }, // 마커이미지의 크기입니다
                 }}
               />
-            )}
+              {!nowLocation.isLoading && (
+                <MapMarker
+                  position={nowLocation.center}
+                  image={{
+                    src: moeat,
+                    size: {
+                      width: 60,
+                      height: 70,
+                    },
+                  }}
+                />
+              )}
 
-            {isOpen && (
-              <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
-                <DetailToolTip data={item} setIsOpen={setIsOpen} />
-              </CustomOverlayMap>
-            )}
-          </li>
-        ))}
+              {markerOpenStates[index] && (
+                <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
+                  <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
+                </CustomOverlayMap>
+              )}
+            </li>
+          ))}
       </Map>
       <MainHeader />
       {isOpenResearch && (
-        <ReButton
-          onClick={() => {
-            MarkerResearch;
-            setIsOpenResearch(false);
-          }}
-        >
+        <ReButton onClick={MarkerResearch}>
           <ResearchButton
             bgColor={'#FFE070'}
             position={'absolute'}
