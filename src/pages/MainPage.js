@@ -70,6 +70,7 @@ const MainPage = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
+
   useEffect(() => {
     if (mapRef.current && initialstate) {
       const neLat = mapRef.current.getBounds().getNorthEast().getLat();
@@ -105,6 +106,7 @@ const MainPage = () => {
     GetPin(MmValue, callBackFunction);
   }; // 마커 데이터 재호출
 
+
   const handleCategory = (data) => {
     const item = data.category;
     if (categories[item]) {
@@ -129,6 +131,7 @@ const MainPage = () => {
     const map = mapRef.current;
     map.setLevel(map.getLevel() + 1);
   };
+
 
   const callBackFunction = (data) => {
     setLocationData(data);
