@@ -4,22 +4,30 @@ import LogoIcon from '../assets/images/logo-design-icon.svg';
 
 import ChildCardLabel from './ChildCardLabel';
 import LinkComponent from './LinkComponent';
-const FindMap = ({ categorySrc, name, category, updateAt }) => {
+const FindMap = ({ data }) => {
+  const updatedAtString = data.updatedAt;
+  const updatedAtDate = new Date(updatedAtString);
+
+  const year = updatedAtDate.getFullYear();
+  const month = String(updatedAtDate.getMonth() + 1).padStart(2, '0');
+  const day = String(updatedAtDate.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+  console.log('위도,경도', data.latitude, data.longitude);
   return (
     <FindMapContainer>
       <ContentContainer>
         <ChildCardLabel />
         <StoreInfoContainer>
           <ContentTop>
-            <CategoryIcon src={categorySrc}></CategoryIcon>
+            <CategoryIcon></CategoryIcon>
             <StoreNameBox>
-              <StoreName>{name}</StoreName>
-              <StoreCategory>{category}</StoreCategory>
+              <StoreName>{data.name}</StoreName>
+              <StoreCategory>{data.category}</StoreCategory>
             </StoreNameBox>
           </ContentTop>
           <ContentBottom>
             <UpdateTitle>업데이트 날짜</UpdateTitle>
-            <UpdateTime>{updateAt}</UpdateTime>
+            <UpdateTime>{formattedDate}</UpdateTime>
           </ContentBottom>
         </StoreInfoContainer>
         <MapFindContainer>
@@ -27,7 +35,9 @@ const FindMap = ({ categorySrc, name, category, updateAt }) => {
             <IconImg src={LogoIcon}></IconImg>
             <IconText>여기 가볼래요 !</IconText>
           </IconContainer>
-          <LinkComponent color="#007DFF">카카오맵으로 길찾기</LinkComponent>
+          <a href={`https://map.kakao.com/link/to/${data.name},${data.latitude},${data.longitude}`}>
+            <LinkComponent color="#007DFF">카카오맵으로 길찾기</LinkComponent>
+          </a>
         </MapFindContainer>
       </ContentContainer>
     </FindMapContainer>
@@ -35,8 +45,7 @@ const FindMap = ({ categorySrc, name, category, updateAt }) => {
 };
 
 const FindMapContainer = styled.div`
-  /* width: 100%; */
-  width: 360px;
+  width: 100%;
   height: 252px;
   padding: 52px 24px 16px 24px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
@@ -61,6 +70,7 @@ const StoreInfoContainer = styled.div`
 const ContentTop = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 33px;
 `;
 const CategoryIcon = styled.img`
   width: 24px;
@@ -97,6 +107,7 @@ const ContentBottom = styled.div`
 const UpdateTitle = styled.div`
   width: 80px;
   height: 20px;
+  margin-right: 10px;
   ${({ theme }) => theme.typographies.body12}
   color: ${({ theme }) => theme.colors.GRAY2};
 `;

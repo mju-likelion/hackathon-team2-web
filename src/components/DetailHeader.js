@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import closeIcon from '../assets/images/large-cancel.svg';
 
 const DetailHeader = ({ children }) => {
-  const closeDetail = () => {};
+  const navigate = useNavigate();
+  const closeDetail = () => {
+    navigate(-1);
+  };
   return (
     <Container>
       <TitleWrapper>

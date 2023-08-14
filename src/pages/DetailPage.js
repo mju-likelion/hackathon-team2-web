@@ -1,3 +1,4 @@
+import { useLocation, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import DetailFooter from '../components/DetailFooter';
@@ -5,7 +6,10 @@ import DetailHeader from '../components/DetailHeader';
 import FindMap from '../components/FindMap';
 import ModifyInfo from '../components/ModifyInfo';
 import StoreDetail from '../components/StoreDetail';
+
 const DetailPage = () => {
+  const location = useLocation();
+  const { id } = useParams();
   return (
     <TestMobile>
       <AllContainer>
@@ -13,9 +17,9 @@ const DetailPage = () => {
         <ContentContainer>
           <DetailContainer>
             <StoreImg />
-            <FindMap />
-            <StoreDetail />
-            <ModifyInfo />
+            <FindMap data={location.state} />
+            <StoreDetail data={location.state} />
+            <ModifyInfo id={id} />
           </DetailContainer>
           <DetailFooter />
         </ContentContainer>
@@ -25,7 +29,7 @@ const DetailPage = () => {
 };
 const TestMobile = styled.div`
   margin: auto;
-  width: 360px;
+  width: 100%;
   height: 1072px;
 `;
 const AllContainer = styled.div`

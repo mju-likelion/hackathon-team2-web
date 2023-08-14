@@ -1,17 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import LogoIcon from '../assets/images/logo-modify-icon.svg';
 
 import LinkComponent from './LinkComponent';
 
-const ModifyInfo = () => {
+const ModifyInfo = ({ id }) => {
+  const navigate = useNavigate();
+  const goModify = () => {
+    navigate(`/detail/${id}/modify`);
+  };
   return (
     <ModifyInfoContainer>
       <IconContainer>
         <img src={LogoIcon} alt="logo" />
         <IconText>정보가 잘못됐어요 !</IconText>
       </IconContainer>
-      <LinkComponent color="#636363">정보 수정 제안하기</LinkComponent>
+      <LinkComponent color="#636363" func={goModify}>
+        정보 수정 제안하기
+      </LinkComponent>
     </ModifyInfoContainer>
   );
 };

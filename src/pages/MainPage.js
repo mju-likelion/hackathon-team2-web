@@ -20,6 +20,7 @@ import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
 
 const MainPage = () => {
+  const mapRef = useRef();
   const [MmValue, setMmValue] = useState({});
   const [isOpenResearch, setIsOpenResearch] = useState(false);
   const [markerOpenStates, setMarkerOpenStates] = useState([]);
@@ -107,8 +108,6 @@ const MainPage = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
-
-
   // 확대 축소 로직
   const zoomIn = () => {
     const map = mapRef.current;
@@ -133,7 +132,6 @@ const MainPage = () => {
     setIsOpenResearch(false);
     GetPin(MmValue, callBackFunction);
   }; // 마커 데이터 재호출
-
 
   const callBackFunction = (data) => {
     setLocationData(data);
@@ -160,7 +158,6 @@ const MainPage = () => {
         }
         ref={mapRef}
       >
-
         {locationData &&
           locationData.map((item, index) => (
             <li key={item.id}>
