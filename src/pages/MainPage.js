@@ -14,6 +14,7 @@ import Category from '../util/Category';
 
 const MainPage = () => {
   const mapRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
   const [MmValue, setMmValue] = useState({});
   const [isOpenResearch, setIsOpenResearch] = useState(false);
   const [markerOpenStates, setMarkerOpenStates] = useState([]);
@@ -70,7 +71,6 @@ const MainPage = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
-
   useEffect(() => {
     if (mapRef.current && initialstate) {
       const neLat = mapRef.current.getBounds().getNorthEast().getLat();
@@ -87,6 +87,7 @@ const MainPage = () => {
       setInitialState(false);
       GetPin(data, callBackFunction);
       setIsOpenResearch(false);
+      setIsLoading(true);
     } else {
       return;
     }
@@ -94,7 +95,7 @@ const MainPage = () => {
 
   // 최대 최소 위도 경도 -> 버튼 로직
   useEffect(() => {
-    if (MmValue) {
+    if (MmValue && isLoading) {
       setIsOpenResearch(true);
     } else {
       setIsOpenResearch(false);
@@ -105,7 +106,6 @@ const MainPage = () => {
     setIsOpenResearch(false);
     GetPin(MmValue, callBackFunction);
   }; // 마커 데이터 재호출
-
 
   const handleCategory = (data) => {
     const item = data.category;
@@ -131,7 +131,6 @@ const MainPage = () => {
     const map = mapRef.current;
     map.setLevel(map.getLevel() + 1);
   };
-
 
   const callBackFunction = (data) => {
     setLocationData(data);
