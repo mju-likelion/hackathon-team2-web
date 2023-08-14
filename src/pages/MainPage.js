@@ -1,23 +1,16 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
-import bakery from '../assets/images/bakery-pin.svg';
-import chinese from '../assets/images/chinese-pin.svg';
-import convenience from '../assets/images/convenience-pin.svg';
-import etc from '../assets/images/etc-pin.svg';
-import fastfood from '../assets/images/fastfood-pin.svg';
-import japanese from '../assets/images/japanesefood-pin.svg';
-import korean from '../assets/images/koreanfood-pin.svg';
 import moeat from '../assets/images/type= ui icon, state= disabled.svg';
-import western from '../assets/images/westernfood-pin.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
+import Category from '../util/Category';
 
 const MainPage = () => {
   const [MmValue, setMmValue] = useState({});
@@ -34,34 +27,30 @@ const MainPage = () => {
   });
 
   const [locationData, setLocationData] = useState([]);
+  const [categories, setCategories] = useState({
+    편의점: false,
+    제과점: false,
+    한식: false,
+    중식: false,
+    양식: false,
+    일식: false,
+    패스트푸드: false,
+    일반대중음식: false,
+  });
+
+  const handleCategory = (data) => {
+    const item = data.category;
+    if (categories[item]) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const handleClick = (index) => {
     const updatedMarkerOpenStates = Array(locationData.length).fill(false);
     updatedMarkerOpenStates[index] = !updatedMarkerOpenStates[index];
     setMarkerOpenStates(updatedMarkerOpenStates);
-  };
-
-  const handleCategory = (data) => {
-    switch (data.category) {
-      case '편의점':
-        return convenience;
-      case '일식':
-        return japanese;
-      case '중식':
-        return chinese;
-      case '양식':
-        return western;
-      case '한식':
-        return korean;
-      case '제과점':
-        return bakery;
-      case '일반대중음식':
-        return etc;
-      case '패스트푸드':
-        return fastfood;
-      default:
-        break;
-    }
   };
 
   useEffect(() => {
@@ -136,7 +125,7 @@ const MainPage = () => {
   };
   return (
     <Container>
-      <Filters />
+      <Filters setCategories={setCategories} />
       <Map
         center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
         // { lat: nowLocation.center.lat, lng: nowLocation.center.lng }
@@ -158,17 +147,19 @@ const MainPage = () => {
         {locationData &&
           locationData.map((item, index) => (
             <li key={item.id}>
-              <MapMarker
-                onClick={() => handleClick(index)}
-                position={{ lat: item.latitude, lng: item.longitude }}
-                image={{
-                  src: handleCategory(item), // 마커이미지의 주소입니다
-                  size: {
-                    width: 24,
-                    height: 24,
-                  }, // 마커이미지의 크기입니다
-                }}
-              />
+              {handleCategory(item) && (
+                <MapMarker
+                  onClick={() => handleClick(index)}
+                  position={{ lat: item.latitude, lng: item.longitude }}
+                  image={{
+                    src: Category(item), // 마커이미지의 주소입니다
+                    size: {
+                      width: 24,
+                      height: 24,
+                    }, // 마커이미지의 크기입니다
+                  }}
+                />
+              )}
               {!nowLocation.isLoading && (
                 <MapMarker
                   position={nowLocation.center}
@@ -181,7 +172,6 @@ const MainPage = () => {
                   }}
                 />
               )}
-
               {markerOpenStates[index] && (
                 <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
                   <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
