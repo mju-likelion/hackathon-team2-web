@@ -1,29 +1,17 @@
-import { useState } from 'react';
-
 import { styled } from 'styled-components';
 
 import FilterChip from '../components/FilterChip';
 
-const Filters = () => {
-  const [categories, setCategories] = useState({
-    convenience: false,
-    bakery: false,
-    korean: false,
-    chinese: false,
-    western: false,
-    japanese: false,
-    fastfood: false,
-    etc: false,
-  });
+const Filters = ({ setCategories }) => {
   const CATEGORY = [
-    { category: 'convenience', title: '편의점' },
-    { category: 'bakery', title: '제과점' },
-    { category: 'korean', title: '한식' },
-    { category: 'chinese', title: '중식' },
-    { category: 'western', title: '양식' },
-    { category: 'japanese', title: '일식' },
-    { category: 'fastfood', title: '패스트푸드' },
-    { category: 'etc', title: '기타' },
+    { category: '편의점', title: '편의점' },
+    { category: '제과점', title: '제과점' },
+    { category: '한식', title: '한식' },
+    { category: '중식', title: '중식' },
+    { category: '양식', title: '양식' },
+    { category: '일식', title: '일식' },
+    { category: '패스트푸드', title: '패스트푸드' },
+    { category: '일반대중음식', title: '기타' },
   ];
 
   return (
