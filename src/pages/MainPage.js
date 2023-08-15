@@ -10,6 +10,7 @@ import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
+import { useGeolocation } from '../hooks/useGeolocation';
 import Category from '../util/Category';
 
 const MainPage = () => {
@@ -19,15 +20,7 @@ const MainPage = () => {
   const [isOpenResearch, setIsOpenResearch] = useState(false);
   const [markerOpenStates, setMarkerOpenStates] = useState([]);
   const [initialstate, setInitialState] = useState(true);
-  //현재 위치 로직
-  const [nowLocation, setNowLocation] = useState({
-    center: {
-      lat: 37.571009,
-      lng: 126.9789398,
-    },
-    errMsg: null,
-    isLoading: true,
-  });
+  const { nowLocation } = useGeolocation();
 
   const [locationData, setLocationData] = useState([]);
   const [categories, setCategories] = useState({
@@ -40,36 +33,6 @@ const MainPage = () => {
     패스트푸드: false,
     일반대중음식: false,
   });
-  useEffect(() => {
-    if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setNowLocation((prev) => ({
-            ...prev,
-            center: {
-              lat: position.coords.latitude, // 위도
-              lng: position.coords.longitude, // 경도
-            },
-            isLoading: false,
-          }));
-        },
-        (err) => {
-          setNowLocation((prev) => ({
-            ...prev,
-            errMsg: err.message,
-            isLoading: false,
-          }));
-        },
-      );
-    } else {
-      setNowLocation((prev) => ({
-        ...prev,
-        errMsg: 'geolocation을 사용할수 없습니다.',
-        isLoading: false,
-      }));
-    }
-  }, [nowLocation.center.lat, nowLocation.center.lng]);
 
   useEffect(() => {
     if (mapRef.current && initialstate) {
@@ -102,10 +65,6 @@ const MainPage = () => {
     }
   }, [MmValue]);
   // 재검색 버튼 로직
-  const MarkerResearch = () => {
-    setIsOpenResearch(false);
-    GetPin(MmValue, callBackFunction);
-  }; // 마커 데이터 재호출
 
   const handleCategory = (data) => {
     const item = data.category;
@@ -122,6 +81,15 @@ const MainPage = () => {
     setMarkerOpenStates(updatedMarkerOpenStates);
   };
 
+  const handleMapChange = (map) => {
+    const bounds = map.getBounds();
+    setMmValue({
+      maxLatitude: bounds.getNorthEast().getLat(),
+      maxLongitude: bounds.getNorthEast().getLng(),
+      minLatitude: bounds.getSouthWest().getLat(),
+      minLongitude: bounds.getSouthWest().getLng(),
+    });
+  };
   // 확대 축소 로직
   const zoomIn = () => {
     const map = mapRef.current;
@@ -132,9 +100,15 @@ const MainPage = () => {
     map.setLevel(map.getLevel() + 1);
   };
 
+  const MarkerResearch = () => {
+    setIsOpenResearch(false);
+    GetPin(MmValue, callBackFunction);
+  }; // 마커 데이터 재호출
+
   const callBackFunction = (data) => {
     setLocationData(data);
   };
+
   return (
     <Container>
       <Filters setCategories={setCategories} />
@@ -147,14 +121,8 @@ const MainPage = () => {
           height: '100%',
         }}
         level={2} // 지도의 확대 레벨
-        onDragEnd={(map) =>
-          setMmValue({
-            maxLatitude: map.getBounds().getNorthEast().getLat(),
-            maxLongitude: map.getBounds().getNorthEast().getLng(),
-            minLatitude: map.getBounds().getSouthWest().getLat(),
-            minLongitude: map.getBounds().getSouthWest().getLng(),
-          })
-        }
+        onBoundsChanged={handleMapChange}
+        onDragEnd={handleMapChange}
         ref={mapRef}
       >
         <ul>
@@ -197,14 +165,14 @@ const MainPage = () => {
       </Map>
       <MainHeader />
       {isOpenResearch && (
-        <ReButton onClick={MarkerResearch}>
+        <button onClick={MarkerResearch}>
           <ResearchButton
             bgColor={'#FFE070'}
             position={'absolute'}
             isOpenResearch={isOpenResearch}
             setIsOpenResearch={setIsOpenResearch}
           />
-        </ReButton>
+        </button>
       )}
 
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
@@ -217,5 +185,5 @@ const Container = styled.div`
   position: relative;
   border: 1px solid black;
 `;
-const ReButton = styled.button``;
+
 export default MainPage;
