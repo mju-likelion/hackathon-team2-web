@@ -4,7 +4,6 @@ import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
-
 import nowLocationLogo from '../assets/images/logoIcon.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
@@ -68,7 +67,6 @@ const MainPage = () => {
   }, [MmValue]);
   // 재검색 버튼 로직
 
-
   const handleCategory = (data) => {
     const item = data.category;
     if (categories[item]) {
@@ -114,6 +112,7 @@ const MainPage = () => {
 
   return (
     <Container>
+      <MainHeader />
       <Filters setCategories={setCategories} />
       <Map
         // center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
@@ -129,54 +128,55 @@ const MainPage = () => {
         ref={mapRef}
       >
         <ul>
-        {locationData &&
-          locationData.map((item, index) => (
-            <li key={item.id}>
-            {handleCategory(item) && (
-              <MapMarker
-                onClick={() => handleClick(index)}
-                position={{ lat: item.latitude, lng: item.longitude }}
-                image={{
-                  src: Category(item), // 마커이미지의 주소입니다
-                  size: {
-                    width: 24,
-                    height: 24,
-                  }, // 마커이미지의 크기입니다
-                }}
-              />
+          {locationData &&
+            locationData.map((item, index) => (
+              <li key={item.id}>
+                {handleCategory(item) && (
+                  <MapMarker
+                    onClick={() => handleClick(index)}
+                    position={{ lat: item.latitude, lng: item.longitude }}
+                    image={{
+                      src: Category(item), // 마커이미지의 주소입니다
+                      size: {
+                        width: 24,
+                        height: 24,
+                      }, // 마커이미지의 크기입니다
+                    }}
+                  />
                 )}
 
-              {markerOpenStates[index] && (
-                <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
-                  <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
-                </CustomOverlayMap>
-              )}
-            </li>
-          ))}
-                  </ul>
+                {markerOpenStates[index] && (
+                  <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
+                    <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
+                  </CustomOverlayMap>
+                )}
+              </li>
+            ))}
+        </ul>
 
         {!nowLocation.isLoading && (
-          <MapMarker
-            position={nowLocation.center}
-            image={{
-              src: nowLocationLogo,
-              size: {
-                width: 60,
-                height: 70,
-              },
-            }}
-          />
-        )}
-        <CustomOverlayMap
-          position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
-          xAnchor={0.5}
-          yAnchor={2.2}
-        >
-          <MainToolTip />
-        </CustomOverlayMap>
+          <>
+            <MapMarker
+              position={nowLocation.center}
+              image={{
+                src: nowLocationLogo,
+                size: {
+                  width: 60,
+                  height: 70,
+                },
+              }}
+            />
 
+            <CustomOverlayMap
+              position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+              xAnchor={0.5}
+              yAnchor={2.2}
+            >
+              <MainToolTip />
+            </CustomOverlayMap>
+          </>
+        )}
       </Map>
-      <MainHeader />
       {isOpenResearch && (
         <button onClick={MarkerResearch}>
           <ResearchButton
@@ -194,7 +194,7 @@ const MainPage = () => {
 };
 const Container = styled.div`
   width: 100%;
-  height: 800px;
+  height: 100%;
   position: relative;
   border: 1px solid black;
 `;

@@ -13,7 +13,7 @@ const DetailPage = () => {
   return (
     <TestMobile>
       <AllContainer>
-        <DetailHeader />
+        <DetailHeader>상세정보</DetailHeader>
         <ContentContainer>
           <DetailContainer>
             <StoreImg />
