@@ -4,10 +4,12 @@ import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
-import moeat from '../assets/images/type= ui icon, state= disabled.svg';
+
+import nowLocationLogo from '../assets/images/logoIcon.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
+import MainToolTip from '../components/MainToolTip';
 import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -66,6 +68,7 @@ const MainPage = () => {
   }, [MmValue]);
   // 재검색 버튼 로직
 
+
   const handleCategory = (data) => {
     const item = data.category;
     if (categories[item]) {
@@ -113,8 +116,8 @@ const MainPage = () => {
     <Container>
       <Filters setCategories={setCategories} />
       <Map
-        center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
-        // { lat: nowLocation.center.lat, lng: nowLocation.center.lng }
+        // center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
+        center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
         style={{
           // 지도의 크기
           width: '100%',
@@ -126,42 +129,52 @@ const MainPage = () => {
         ref={mapRef}
       >
         <ul>
-          {locationData &&
-            locationData.map((item, index) => (
-              <li key={item.id}>
-                {handleCategory(item) && (
-                  <MapMarker
-                    onClick={() => handleClick(index)}
-                    position={{ lat: item.latitude, lng: item.longitude }}
-                    image={{
-                      src: Category(item), // 마커이미지의 주소입니다
-                      size: {
-                        width: 24,
-                        height: 24,
-                      }, // 마커이미지의 크기입니다
-                    }}
-                  />
+        {locationData &&
+          locationData.map((item, index) => (
+            <li key={item.id}>
+            {handleCategory(item) && (
+              <MapMarker
+                onClick={() => handleClick(index)}
+                position={{ lat: item.latitude, lng: item.longitude }}
+                image={{
+                  src: Category(item), // 마커이미지의 주소입니다
+                  size: {
+                    width: 24,
+                    height: 24,
+                  }, // 마커이미지의 크기입니다
+                }}
+              />
                 )}
-                {!nowLocation.isLoading && (
-                  <MapMarker
-                    position={nowLocation.center}
-                    image={{
-                      src: moeat,
-                      size: {
-                        width: 60,
-                        height: 70,
-                      },
-                    }}
-                  />
-                )}
-                {markerOpenStates[index] && (
-                  <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
-                    <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
-                  </CustomOverlayMap>
-                )}
-              </li>
-            ))}
-        </ul>
+
+              {markerOpenStates[index] && (
+                <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
+                  <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
+                </CustomOverlayMap>
+              )}
+            </li>
+          ))}
+                  </ul>
+
+        {!nowLocation.isLoading && (
+          <MapMarker
+            position={nowLocation.center}
+            image={{
+              src: nowLocationLogo,
+              size: {
+                width: 60,
+                height: 70,
+              },
+            }}
+          />
+        )}
+        <CustomOverlayMap
+          position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+          xAnchor={0.5}
+          yAnchor={2.2}
+        >
+          <MainToolTip />
+        </CustomOverlayMap>
+
       </Map>
       <MainHeader />
       {isOpenResearch && (

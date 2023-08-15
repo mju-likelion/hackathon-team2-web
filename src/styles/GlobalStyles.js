@@ -31,5 +31,8 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       cursor: pointer;
     }
+    li {
+    list-style: none;
+    }
 `;
 export default GlobalStyle;

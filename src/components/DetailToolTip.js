@@ -1,14 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { AxiosDetail } from '../api/Detail';
 import cancelIcon from '../assets/images/cancel.svg';
 import arrow from '../assets/images/large-speech.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
 const DetailToolTip = ({ setMarkerOpenStates, data }) => {
+  const navigate = useNavigate();
+  const [detailData, setDetailData] = useState();
   const closeToolTip = () => {
     setMarkerOpenStates([]);
   };
+  useEffect(() => {
+    AxiosDetail(data.id, setDetailData);
+  }, []);
+  const getDetailInfo = () => {
+    console.log('이게맞는데?', detailData);
+    navigate(`/detail/${data.id}`, { state: detailData });
+  };
+
   return (
     <>
       <Body>
@@ -23,9 +36,9 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
             <CancelIcon src={cancelIcon} onClick={closeToolTip} />
           </ContentTop>
           <ContentBottom>
-            <Link to={`/detail/${data.id}`}>
+            <button onClick={getDetailInfo}>
               <MoreIcon src={moreIcon}></MoreIcon>
-            </Link>
+            </button>
           </ContentBottom>
         </ContentContainer>
       </Body>
