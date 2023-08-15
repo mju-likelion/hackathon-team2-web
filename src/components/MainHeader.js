@@ -23,6 +23,7 @@ const Container = styled.div`
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const TitleWrapper = styled.div`
   width: 82px;

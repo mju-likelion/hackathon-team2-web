@@ -11,28 +11,28 @@ const FilterChip = ({ children, category, filter }) => {
 
   useEffect(() => {
     switch (category) {
-      case 'convenience':
+      case '편의점':
         setBackgroundColor('#FFB763');
         break;
-      case 'japanese':
+      case '일식':
         setBackgroundColor('#5E7FF6');
         break;
-      case 'chinese':
+      case '중식':
         setBackgroundColor('#E75A5A');
         break;
-      case 'western':
+      case '양식':
         setBackgroundColor('#33DBBD');
         break;
-      case 'korean':
+      case '한식':
         setBackgroundColor('#5DB6F5');
         break;
-      case 'bakery':
+      case '제과점':
         setBackgroundColor('#8A6942');
         break;
-      case 'etc':
+      case '일반대중음식':
         setBackgroundColor('#64557C');
         break;
-      case 'fastfood':
+      case '패스트푸드':
         setBackgroundColor('#FF8A00');
         break;
       default:
