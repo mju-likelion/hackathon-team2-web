@@ -11,7 +11,7 @@ const ResearchButton = ({ bgColor, fontColor, position }) => {
           <ResearchText fontColor={fontColor}>이 지역에서 다시 검색</ResearchText>
         </ContentWrapper>
       ) : (
-        <ResearchText fontColor={fontColor}>이 지역에서 다시 검색</ResearchText>
+        <ResearchText fontColor={fontColor}>이전 페이지로 돌아가기</ResearchText>
       )}
     </ButtonContainer>
   );
@@ -26,6 +26,7 @@ const ButtonContainer = styled.button`
   padding: 10px 8px;
   background-color: ${({ bgColor }) => bgColor};
   border-radius: 999px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   ${({ position }) =>
     position === 'absolute' &&
     css`

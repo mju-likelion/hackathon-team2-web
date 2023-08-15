@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 import LogoIcon from '../assets/images/logo-design-icon.svg';
+import CategoryImg from '../components/CategoryIcon';
 
 import ChildCardLabel from './ChildCardLabel';
 import LinkComponent from './LinkComponent';
@@ -21,7 +22,9 @@ const FindMap = ({ data }) => {
         <ChildCardLabel />
         <StoreInfoContainer>
           <ContentTop>
-            <CategoryIcon />
+            <CategoryIcon>
+              <CategoryImg category={data.category} />
+            </CategoryIcon>
             <StoreNameBox>
               <StoreName>{data.name}</StoreName>
               <StoreCategory>{data.category}</StoreCategory>
@@ -74,7 +77,7 @@ const ContentTop = styled.div`
   justify-content: space-between;
   margin-bottom: 33px;
 `;
-const CategoryIcon = styled.img`
+const CategoryIcon = styled.div`
   width: 24px;
   height: 24px;
 `;
