@@ -21,7 +21,6 @@ const MainToolTip = () => {
 const Container = styled.div`
   width: 108px;
   height: 52px;
-  background-color: gray;
   display: flex;
   flex-direction: column;
   align-items: center;

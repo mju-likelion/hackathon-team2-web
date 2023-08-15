@@ -11,11 +11,12 @@ import etc from '../assets/images/etc-pin.svg';
 import fastfood from '../assets/images/fastfood-pin.svg';
 import japanese from '../assets/images/japanesefood-pin.svg';
 import korean from '../assets/images/koreanfood-pin.svg';
-import moeat from '../assets/images/type= ui icon, state= disabled.svg';
+import nowLocationLogo from '../assets/images/logoIcon.svg';
 import western from '../assets/images/westernfood-pin.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
+import MainToolTip from '../components/MainToolTip';
 import ResearchButton from '../components/ResearchButton';
 import ZoomButton from '../components/ZoomButton';
 
@@ -140,8 +141,8 @@ const MainPage = () => {
     <Container>
       <Filters />
       <Map
-        center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
-        // { lat: nowLocation.center.lat, lng: nowLocation.center.lng }
+        // center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
+        center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
         style={{
           // 지도의 크기
           width: '100%',
@@ -172,19 +173,6 @@ const MainPage = () => {
                   }, // 마커이미지의 크기입니다
                 }}
               />
-              {!nowLocation.isLoading && (
-                <MapMarker
-                  position={nowLocation.center}
-                  image={{
-                    src: moeat,
-                    size: {
-                      width: 60,
-                      height: 70,
-                    },
-                  }}
-                />
-              )}
-
               {markerOpenStates[index] && (
                 <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
                   <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
@@ -192,6 +180,25 @@ const MainPage = () => {
               )}
             </li>
           ))}
+        {!nowLocation.isLoading && (
+          <MapMarker
+            position={nowLocation.center}
+            image={{
+              src: nowLocationLogo,
+              size: {
+                width: 60,
+                height: 70,
+              },
+            }}
+          />
+        )}
+        <CustomOverlayMap
+          position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+          xAnchor={0.5}
+          yAnchor={2.2}
+        >
+          <MainToolTip />
+        </CustomOverlayMap>
       </Map>
       <MainHeader />
       {isOpenResearch && (

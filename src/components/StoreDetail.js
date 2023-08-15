@@ -36,7 +36,9 @@ const StoreDetail = ({ data }) => {
         </WebContainer>
         <CallContainer>
           <CallImg src={callIcon}></CallImg>
-          <CallContent>{data.phoneNumber}</CallContent>
+          <CallContent href={`tel: ${data.phoneNumber}`}>
+            {data.phoneNumber ? data.phoneNumber : '정보 없음'}
+          </CallContent>
         </CallContainer>
       </ListContainer>
     </AllContainer>
@@ -166,7 +168,7 @@ const CallContainer = styled.div`
 const CallImg = styled.img`
   margin-right: 18px;
 `;
-const CallContent = styled.div`
+const CallContent = styled.a`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;

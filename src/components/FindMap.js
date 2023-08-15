@@ -4,7 +4,9 @@ import LogoIcon from '../assets/images/logo-design-icon.svg';
 
 import ChildCardLabel from './ChildCardLabel';
 import LinkComponent from './LinkComponent';
+
 const FindMap = ({ data }) => {
+  // 업데이트 날짜 로직
   const updatedAtString = data.updatedAt;
   const updatedAtDate = new Date(updatedAtString);
 
@@ -12,14 +14,14 @@ const FindMap = ({ data }) => {
   const month = String(updatedAtDate.getMonth() + 1).padStart(2, '0');
   const day = String(updatedAtDate.getDate()).padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
-  console.log('위도,경도', data.latitude, data.longitude);
+
   return (
     <FindMapContainer>
       <ContentContainer>
         <ChildCardLabel />
         <StoreInfoContainer>
           <ContentTop>
-            <CategoryIcon></CategoryIcon>
+            <CategoryIcon />
             <StoreNameBox>
               <StoreName>{data.name}</StoreName>
               <StoreCategory>{data.category}</StoreCategory>
