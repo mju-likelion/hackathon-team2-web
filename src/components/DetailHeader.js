@@ -21,6 +21,7 @@ const Container = styled.div`
   border-bottom-right-radius: 12px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
   padding: 15px 22px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const TitleWrapper = styled.div`
   display: flex;
