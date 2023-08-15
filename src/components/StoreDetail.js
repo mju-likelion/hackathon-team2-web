@@ -5,15 +5,15 @@ import locationIcon from '../assets/images/pin.svg';
 import timeIcon from '../assets/images/time.svg';
 import webIcon from '../assets/images/web.svg';
 
-const StoreDetail = ({ address1, address2, link, callNum }) => {
+const StoreDetail = ({ data }) => {
   return (
     <AllContainer>
       <ListContainer>
         <LocationContainer>
           <LocationImg src={locationIcon}></LocationImg>
           <AddressBox>
-            <Address1>{address1}</Address1>
-            <Address2>{address2}</Address2>
+            <Address1>{data.roadNameAddress}</Address1>
+            <Address2>{data.fullAddress}</Address2>
           </AddressBox>
         </LocationContainer>
         <TimeContainer>
@@ -32,11 +32,13 @@ const StoreDetail = ({ address1, address2, link, callNum }) => {
         </TimeContainer>
         <WebContainer>
           <WebImg src={webIcon}></WebImg>
-          <WebContent>{link}</WebContent>
+          <WebContent>정보없음</WebContent>
         </WebContainer>
         <CallContainer>
           <CallImg src={callIcon}></CallImg>
-          <CallContent>{callNum}</CallContent>
+          <CallContent href={`tel: ${data.phoneNumber}`}>
+            {data.phoneNumber ? data.phoneNumber : '정보 없음'}
+          </CallContent>
         </CallContainer>
       </ListContainer>
     </AllContainer>
@@ -45,7 +47,7 @@ const StoreDetail = ({ address1, address2, link, callNum }) => {
 const AllContainer = styled.div`
   padding: 50px 25px;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.colors.GRAY1};
 `;
 
 const ListContainer = styled.div`
@@ -156,7 +158,6 @@ const WebContent = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ theme }) => theme.colors.BLUE2};
 `;
 
 const CallContainer = styled.div`
@@ -167,7 +168,7 @@ const CallContainer = styled.div`
 const CallImg = styled.img`
   margin-right: 18px;
 `;
-const CallContent = styled.div`
+const CallContent = styled.a`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;

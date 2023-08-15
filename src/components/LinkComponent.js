@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 
-import Next from '../assets/images/Next.jsx';
+import Next from '../assets/images/Next';
 
-const LinkComponent = ({ children, color }) => {
+const LinkComponent = ({ children, color, func }) => {
   return (
-    <LinkContainer color={color}>
+    <LinkContainer color={color} onClick={func}>
       <LinkText>{children}</LinkText>
       <Next color={color} />
     </LinkContainer>
@@ -13,13 +13,13 @@ const LinkComponent = ({ children, color }) => {
 
 export default LinkComponent;
 
-const LinkContainer = styled.div`
+const LinkContainer = styled.button`
   display: flex;
   align-items: end;
   color: ${(props) => props.color};
 `;
 
-const LinkText = styled.div`
+const LinkText = styled.p`
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;

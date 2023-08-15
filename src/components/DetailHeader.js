@@ -1,13 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import closeIcon from '../assets/images/large-cancel.svg';
 
-const DetailHeader = () => {
-  const closeDetail = () => {};
+const DetailHeader = ({ children }) => {
+  const navigate = useNavigate();
+  const closeDetail = () => {
+    navigate(-1);
+  };
   return (
     <Container>
       <TitleWrapper>
-        <Title>상세정보</Title>
+        <Title>{children}</Title>
         <CloseIcon src={closeIcon} onClick={closeDetail} />
       </TitleWrapper>
     </Container>
@@ -21,6 +25,7 @@ const Container = styled.div`
   border-bottom-right-radius: 12px;
   background-color: ${({ theme }) => theme.colors.YELLOW};
   padding: 15px 22px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const TitleWrapper = styled.div`
   display: flex;
