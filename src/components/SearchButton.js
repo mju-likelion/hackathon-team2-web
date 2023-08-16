@@ -3,22 +3,22 @@ import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const SearchButton = ({ bgcolor, fontcolor, position }) => {
+const SearchButton = ({ background, fontColor, position }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
   };
-  return bgcolor === '#FFE070' ? (
-    <ButtonContainer position={position} bgcolor={bgcolor}>
+  return background === '#FFE070' ? (
+    <ButtonContainer background={background} position={position}>
       <ContentWrapper>
         <Research />
-        <ButtonText fontcolor={fontcolor}>이 지역에서 다시 검색</ButtonText>
+        <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
       </ContentWrapper>
     </ButtonContainer>
   ) : (
-    <ButtonContainer onClick={goBack} bgcolor={bgcolor}>
-      <ButtonText fontcolor={fontcolor}>이전 페이지로 돌아가기</ButtonText>
+    <ButtonContainer onClick={goBack} background={background}>
+      <ButtonText fontColor={fontColor}>이전 페이지로 돌아가기</ButtonText>
     </ButtonContainer>
   );
 };
@@ -30,7 +30,8 @@ const ButtonContainer = styled.button`
   width: 162px;
   height: 44px;
   padding: 10px 8px;
-  background-color: ${({ bgcolor }) => bgcolor};
+  background-color: ${({ background }) => background};
+  border-radius: 999px;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 999px;
   ${({ position }) =>
