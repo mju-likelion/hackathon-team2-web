@@ -1,14 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import errorIcon from '../assets/images/large-erroricon.svg';
 import SearchButton from '../components/SearchButton';
 const ErrorPage = ({ errorCode }) => {
+  const navigate = useNavigate();
   const errorConfirm = (errorCode) => {
     if (errorCode === '404') {
       return '가맹점에 대한 정보를 찾을 수 없습니다. (404) \n 이전 페이지로 넘어가주시길 바랍니다.';
     } else if (errorCode === '505') {
       return '알 수 없는 오류가 발생했습니다. (500) \n이전 페이지로 넘어가주시길 바랍니다.';
     }
+  };
+  const handleClick = () => {
+    navigate(-1);
   };
   return (
     <AllWrapper>
@@ -20,7 +25,9 @@ const ErrorPage = ({ errorCode }) => {
             <ErrorContent>{errorConfirm(errorCode)}</ErrorContent>
           </ErrorContainer>
         </ContentBox>
-        <SearchButton bgColor={'#5E7FF6'} fontColor={'#ffffff'} />
+        <button onClick={handleClick}>
+          <SearchButton bgcolor="#5E7FF6" fontcolor="#ffffff" />
+        </button>
       </Container>
     </AllWrapper>
   );

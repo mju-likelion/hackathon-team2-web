@@ -1,20 +1,20 @@
-import { styled, css } from 'styled-components';
+
+import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const SearchButton = ({ bgColor, fontColor, position }) => {
-  const markerResearch = () => {}; // 마커 데이터 재호출
-  const goBack = () => {};
-  return bgColor === '#FFE070' ? (
-    <ButtonContainer onClick={markerResearch} bgColor={bgColor} position={position}>
+const SearchButton = ({ bgcolor, fontcolor, position }) => {
+  return bgcolor === '#FFE070' ? (
+    <ButtonContainer position={position} onClick={markerResearch} bgcolor={bgcolor}>
+
       <ContentWrapper>
         <Research />
-        <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
+        <ButtonText fontcolor={fontcolor}>이 지역에서 다시 검색</ButtonText>
       </ContentWrapper>
     </ButtonContainer>
   ) : (
-    <ButtonContainer onClick={goBack} bgColor={bgColor}>
-      <ButtonText fontColor={fontColor}>이전 페이지로 돌아가기</ButtonText>
+    <ButtonContainer onClick={goBack} bgcolor={bgcolor}>
+      <ButtonText fontcolor={fontcolor}>이전 페이지로 돌아가기</ButtonText>
     </ButtonContainer>
   );
 };
@@ -26,9 +26,9 @@ const ButtonContainer = styled.button`
   width: 162px;
   height: 44px;
   padding: 10px 8px;
-  background-color: ${({ bgColor }) => bgColor};
-  border-radius: 999px;
+  background-color: ${({ bgcolor }) => bgcolor};
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
   ${({ position }) =>
     position === 'absolute' &&
     css`
@@ -53,6 +53,6 @@ const ButtonText = styled.p`
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ fontColor }) => fontColor};
+  color: ${({ fontcolor }) => fontcolor};
 `;
 export default SearchButton;

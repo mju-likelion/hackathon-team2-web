@@ -9,17 +9,31 @@ import arrow from '../assets/images/large-speech.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
 const DetailToolTip = ({ setMarkerOpenStates, data }) => {
-  const navigate = useNavigate();
   const [detailData, setDetailData] = useState();
+
+  useEffect(() => {
+    if (detailData) {
+      navigate(`/detail/${data.id}`, { state: detailData });
+    }
+  }, [detailData]);
+
+  console.log(data);
+  const navigate = useNavigate();
+
   const closeToolTip = () => {
     setMarkerOpenStates([]);
   };
-  useEffect(() => {
-    AxiosDetail(data.id, setDetailData);
-  }, []);
-  const getDetailInfo = () => {
-    console.log('이게맞는데?', detailData);
-    navigate(`/detail/${data.id}`, { state: detailData });
+
+  const getDetailInfo = async () => {
+    AxiosDetail(data.id, setDetailData, handleError);
+  };
+
+  const handleError = (error) => {
+    if (error.response.data.statusCode === 404) {
+      navigate('/404Error');
+    } else if (error.response.data.statusCode === 500) {
+      navigate('/500Error');
+    }
   };
 
   return (

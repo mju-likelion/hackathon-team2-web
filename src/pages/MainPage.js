@@ -84,6 +84,7 @@ const MainPage = () => {
 
   const handleMapChange = (map) => {
     const bounds = map.getBounds();
+    map.setMaxLevel(10);
     setMmValue({
       maxLatitude: bounds.getNorthEast().getLat(),
       maxLongitude: bounds.getNorthEast().getLng(),
@@ -180,8 +181,9 @@ const MainPage = () => {
       {isOpenResearch && (
         <button onClick={MarkerResearch}>
           <SearchButton
-            bgColor={'#FFE070'}
-            position={'absolute'}
+
+            bgcolor="#FFE070"
+            position="absolute"
             isOpenResearch={isOpenResearch}
             setIsOpenResearch={setIsOpenResearch}
           />
