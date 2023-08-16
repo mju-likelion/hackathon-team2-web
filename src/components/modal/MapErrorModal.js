@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import ErrorIcon from '../assets/images/large-exclamation-icon.svg';
+import ErrorIcon from '../../assets/images/large-exclamation-icon.svg';
 
 const MapErrorModal = () => {
   return (

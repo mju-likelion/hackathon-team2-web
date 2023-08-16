@@ -11,7 +11,7 @@ import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
 
 import NoDataModal from '../components/modal/NoDataModal';
-import MapErrorModal from '../components/MapErrorModal';
+import MapErrorModal from '../components/modal/MapErrorModal';
 
 import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
