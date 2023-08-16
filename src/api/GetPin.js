@@ -6,7 +6,6 @@ export const GetPin = async (MmValue, callBackFunction, errorFunction) => {
     const res = await Axios.get(`/stores`, {
       params: MmValue,
     });
-    console.log(res);
     callBackFunction(res.data);
   } catch (error) {
     if (error.response && error.response.status === 500) {

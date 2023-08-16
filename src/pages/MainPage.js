@@ -86,6 +86,7 @@ const MainPage = () => {
 
   const handleMapChange = (map) => {
     const bounds = map.getBounds();
+    map.setMaxLevel(10);
     setMmValue({
       maxLatitude: bounds.getNorthEast().getLat(),
       maxLongitude: bounds.getNorthEast().getLng(),

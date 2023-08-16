@@ -1,12 +1,16 @@
-import { styled, css } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
 const SearchButton = ({ background, fontColor, position }) => {
-  const markerResearch = () => {}; // 마커 데이터 재호출
-  const goBack = () => {};
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
   return background === '#FFE070' ? (
-    <ButtonContainer onClick={markerResearch} background={background} position={position}>
+    <ButtonContainer background={background} position={position}>
       <ContentWrapper>
         <Research />
         <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
@@ -29,6 +33,7 @@ const ButtonContainer = styled.button`
   background-color: ${({ background }) => background};
   border-radius: 999px;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
   ${({ position }) =>
     position === 'absolute' &&
     css`
@@ -53,6 +58,6 @@ const ButtonText = styled.p`
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ fontColor }) => fontColor};
+  color: ${({ fontcolor }) => fontcolor};
 `;
 export default SearchButton;
