@@ -122,7 +122,7 @@ const MainPage = () => {
     if (showTooltip) {
       const timer = setTimeout(() => {
         setShowTooltip(false);
-      }, 5000);
+      }, 7000);
 
       return () => {
         clearTimeout(timer);
