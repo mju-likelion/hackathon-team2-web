@@ -1,7 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import StoreLogo from '../assets/images/likelion-logo.svg';
+import likelion from '../assets/images/likelion-logo.svg';
 import DetailFooter from '../components/DetailFooter';
 import DetailHeader from '../components/DetailHeader';
 import FindMap from '../components/FindMap';
@@ -17,9 +17,9 @@ const DetailPage = () => {
         <DetailHeader>상세정보</DetailHeader>
         <ContentContainer>
           <DetailContainer>
-            <StoreImgWrapper>
-              <StoreImgBox src={StoreLogo} />
-            </StoreImgWrapper>
+            <StoreImgBox>
+              <StoreImg src={likelion}></StoreImg>
+            </StoreImgBox>
             <FindMap data={location.state} />
             <StoreDetail data={location.state} />
             <ModifyInfo id={id} />
@@ -46,14 +46,14 @@ const DetailContainer = styled.div`
   margin-bottom: 31px;
 `;
 
-const StoreImgWrapper = styled.div`
+const StoreImgBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px 73px 102px 55px;
+  padding: 28px 73px 102px 55px;
 `;
-const StoreImgBox = styled.img`
+const StoreImg = styled.img`
   width: 232px;
   height: 26px;
 `;
