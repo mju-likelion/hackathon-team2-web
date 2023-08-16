@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import { AxiosDetail } from '../api/Detail';
 import cancelIcon from '../assets/images/cancel.svg';
 import arrow from '../assets/images/large-speech.svg';
+import likeLion from '../assets/images/likelion-logo.svg';
 import moreIcon from '../assets/images/seemore.svg';
 
 const DetailToolTip = ({ setMarkerOpenStates, data }) => {
@@ -39,7 +40,9 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
   return (
     <>
       <Body>
-        <StoreImg></StoreImg>
+        <StoreImgBox>
+          <StoreImg src={likeLion} />
+        </StoreImgBox>
         <ContentContainer>
           <ContentTop>
             <ContentList>
@@ -71,11 +74,14 @@ const Body = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const StoreImg = styled.img`
+const StoreImgBox = styled.div`
   width: 74px;
   height: 86px;
-  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+const StoreImg = styled.img``;
 const ContentContainer = styled.div`
   width: 148px;
   height: 98px;

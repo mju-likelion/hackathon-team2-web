@@ -1,7 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import likelion from '../assets/images/likelion-logo.svg';
+import likeLion from '../assets/images/large-likelion-logo.svg';
 import DetailFooter from '../components/DetailFooter';
 import DetailHeader from '../components/DetailHeader';
 import FindMap from '../components/FindMap';
@@ -19,7 +19,7 @@ const DetailPage = () => {
         <ContentContainer>
           <DetailContainer>
             <StoreImgBox>
-              <StoreImg src={likelion}></StoreImg>
+              <StoreImg src={likeLion}></StoreImg>
             </StoreImgBox>
             <FindMap data={location.state} />
             <StoreDetail data={location.state} />
@@ -54,9 +54,6 @@ const StoreImgBox = styled.div`
   align-items: center;
   padding: 28px 73px 102px 55px;
 `;
-const StoreImg = styled.img`
-  width: 232px;
-  height: 26px;
-`;
+const StoreImg = styled.img``;
 
 export default DetailPage;
