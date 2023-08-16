@@ -10,6 +10,7 @@ import StoreDetail from '../components/StoreDetail';
 const DetailPage = () => {
   const location = useLocation();
   const { id } = useParams();
+  console.log(location.state);
   return (
     <TestMobile>
       <AllContainer>

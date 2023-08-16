@@ -9,7 +9,7 @@ import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
-import ResearchButton from '../components/ResearchButton';
+import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';
 import Category from '../util/Category';
@@ -84,6 +84,7 @@ const MainPage = () => {
 
   const handleMapChange = (map) => {
     const bounds = map.getBounds();
+    map.setMaxLevel(10);
     setMmValue({
       maxLatitude: bounds.getNorthEast().getLat(),
       maxLongitude: bounds.getNorthEast().getLng(),
@@ -124,7 +125,7 @@ const MainPage = () => {
         }}
         level={2} // 지도의 확대 레벨
         onBoundsChanged={handleMapChange}
-        onDragEnd={handleMapChange}
+        // onDragEnd={handleMapChange}
         ref={mapRef}
       >
         <ul>
@@ -179,9 +180,9 @@ const MainPage = () => {
       </Map>
       {isOpenResearch && (
         <button onClick={MarkerResearch}>
-          <ResearchButton
-            bgColor={'#FFE070'}
-            position={'absolute'}
+          <SearchButton
+            bgcolor="#FFE070"
+            position="absolute"
             isOpenResearch={isOpenResearch}
             setIsOpenResearch={setIsOpenResearch}
           />

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
 import DetailPage from './pages/DetailPage';
+import ErrorPage from './pages/ErrorPage';
 import MainPage from './pages/MainPage';
 import ModifyInfoPage from './pages/ModifyInfoPage';
 import GlobalStyle from './styles/GlobalStyles';
@@ -17,6 +18,7 @@ const App = () => {
               <Route path="/" element={<MainPage />} />
               <Route path="/detail/:id" element={<DetailPage />} />
               <Route path="/detail/:id/modify" element={<ModifyInfoPage />} />
+              <Route path="/404Error" element={<ErrorPage errorCode="404" />} />
             </Routes>
           </Frame>
         </Layout>
