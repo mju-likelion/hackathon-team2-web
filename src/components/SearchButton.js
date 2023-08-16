@@ -3,14 +3,14 @@ import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const SearchButton = ({ background, fontColor, position }) => {
+const SearchButton = ({ background, fontColor, position, onClick }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
   };
   return background === '#FFE070' ? (
-    <ButtonContainer background={background} position={position}>
+    <ButtonContainer background={background} position={position} onClick={onClick}>
       <ContentWrapper>
         <Research />
         <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
@@ -52,7 +52,7 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const ButtonText = styled.p`
+const ButtonText = styled.div`
   display: flex;
   align-items: center;
   font-size: 13px;

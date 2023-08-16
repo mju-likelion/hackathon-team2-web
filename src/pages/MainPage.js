@@ -4,7 +4,7 @@ import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
-import nowLocationLogo from '../assets/images/logoIcon.svg';
+import nowLocationLogo from '../assets/images/map-icon.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
@@ -122,7 +122,7 @@ const MainPage = () => {
     if (showTooltip) {
       const timer = setTimeout(() => {
         setShowTooltip(false);
-      }, 3000);
+      }, 5000);
 
       return () => {
         clearTimeout(timer);
@@ -196,14 +196,13 @@ const MainPage = () => {
         )}
       </Map>
       {isOpenResearch && (
-        <div onClick={MarkerResearch}>
-          <SearchButton
-            background="#FFE070"
-            position="absolute"
-            isOpenResearch={isOpenResearch}
-            setIsOpenResearch={setIsOpenResearch}
-          />
-        </div>
+        <SearchButton
+          background="#FFE070"
+          position="absolute"
+          isOpenResearch={isOpenResearch}
+          setIsOpenResearch={setIsOpenResearch}
+          onClick={MarkerResearch}
+        />
       )}
 
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />

@@ -32,7 +32,7 @@ const TitleWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const Title = styled.p`
+const Title = styled.div`
   width: 45px;
   height: 36px;
   font-size: 24px;
