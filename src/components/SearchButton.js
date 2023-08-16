@@ -1,12 +1,12 @@
+
 import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
 const SearchButton = ({ bgcolor, fontcolor, position }) => {
-  const markerResearch = () => {}; // 마커 데이터 재호출
-  const goBack = () => {};
   return bgcolor === '#FFE070' ? (
     <ButtonContainer position={position} onClick={markerResearch} bgcolor={bgcolor}>
+
       <ContentWrapper>
         <Research />
         <ButtonText fontcolor={fontcolor}>이 지역에서 다시 검색</ButtonText>
@@ -39,6 +39,7 @@ const ButtonContainer = styled.button`
       left: 50%;
     `}
 `;
+
 const ContentWrapper = styled.div`
   width: 146px;
   height: 24px;

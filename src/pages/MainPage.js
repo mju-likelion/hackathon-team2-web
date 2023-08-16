@@ -181,6 +181,7 @@ const MainPage = () => {
       {isOpenResearch && (
         <button onClick={MarkerResearch}>
           <SearchButton
+
             bgcolor="#FFE070"
             position="absolute"
             isOpenResearch={isOpenResearch}
@@ -197,7 +198,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  border: 1px solid black;
 `;
 
 export default MainPage;
