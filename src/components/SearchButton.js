@@ -1,12 +1,12 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const SearchButton = ({ bgColor, fontColor }) => {
+const SearchButton = ({ bgColor, fontColor, position }) => {
   const markerResearch = () => {}; // 마커 데이터 재호출
   const goBack = () => {};
   return bgColor === '#FFE070' ? (
-    <ButtonContainer onClick={markerResearch} bgColor={bgColor}>
+    <ButtonContainer onClick={markerResearch} bgColor={bgColor} position={position}>
       <ContentWrapper>
         <Research />
         <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
@@ -28,7 +28,18 @@ const ButtonContainer = styled.button`
   padding: 10px 8px;
   background-color: ${({ bgColor }) => bgColor};
   border-radius: 999px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  ${({ position }) =>
+    position === 'absolute' &&
+    css`
+      position: absolute;
+      bottom: 68px;
+      z-index: 99;
+      transform: translateX(-50%);
+      left: 50%;
+    `}
 `;
+
 const ContentWrapper = styled.div`
   width: 146px;
   height: 24px;

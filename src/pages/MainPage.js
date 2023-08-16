@@ -9,7 +9,7 @@ import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
-import ResearchButton from '../components/ResearchButton';
+import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';
 import Category from '../util/Category';
@@ -124,7 +124,7 @@ const MainPage = () => {
         }}
         level={2} // 지도의 확대 레벨
         onBoundsChanged={handleMapChange}
-        onDragEnd={handleMapChange}
+        // onDragEnd={handleMapChange}
         ref={mapRef}
       >
         <ul>
@@ -179,7 +179,7 @@ const MainPage = () => {
       </Map>
       {isOpenResearch && (
         <button onClick={MarkerResearch}>
-          <ResearchButton
+          <SearchButton
             bgColor={'#FFE070'}
             position={'absolute'}
             isOpenResearch={isOpenResearch}
@@ -196,7 +196,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  border: 1px solid black;
 `;
 
 export default MainPage;
