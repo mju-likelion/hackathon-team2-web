@@ -19,6 +19,7 @@ const App = () => {
               <Route path="/detail/:id" element={<DetailPage />} />
               <Route path="/detail/:id/modify" element={<ModifyInfoPage />} />
               <Route path="/404Error" element={<ErrorPage errorCode="404" />} />
+              <Route path="/500Error" element={<ErrorPage errorCode="500" />} />
             </Routes>
           </Frame>
         </Layout>

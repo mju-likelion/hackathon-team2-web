@@ -30,8 +30,9 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
 
   const handleError = (error) => {
     if (error.response.data.statusCode === 404) {
-      console.log(error.response.data);
       navigate('/404Error');
+    } else if (error.response.data.statusCode === 500) {
+      navigate('/500Error');
     }
   };
 
