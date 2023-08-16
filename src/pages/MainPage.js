@@ -9,10 +9,8 @@ import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
-
-import NoDataModal from '../components/modal/NoDataModal';
 import MapErrorModal from '../components/modal/MapErrorModal';
-
+import NoDataModal from '../components/modal/NoDataModal';
 import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';

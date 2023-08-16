@@ -1,7 +1,6 @@
 import { Axios } from './Axios';
 
 export const GetPin = async (MmValue, callBackFunction, errorFunction) => {
-  console.log(MmValue);
   try {
     const res = await Axios.get(`/stores`, {
       params: MmValue,

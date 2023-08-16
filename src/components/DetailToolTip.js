@@ -18,7 +18,6 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
     }
   }, [detailData]);
 
-  console.log(data);
   const navigate = useNavigate();
 
   const closeToolTip = () => {
