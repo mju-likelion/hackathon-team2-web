@@ -48,12 +48,14 @@ const DetailContainer = styled.div`
 
 const StoreImgBox = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 28px 73px 102px 55px;
 `;
 const StoreImg = styled.img`
   width: 232px;
   height: 26px;
-  display: flex;
 `;
 
 export default DetailPage;

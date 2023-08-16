@@ -77,6 +77,7 @@ const ContentTop = styled.div`
   justify-content: space-between;
   margin-bottom: 33px;
 `;
+
 const CategoryIconBox = styled.div`
   width: 24px;
   height: 24px;
