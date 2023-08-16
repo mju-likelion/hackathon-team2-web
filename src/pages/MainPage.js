@@ -9,6 +9,7 @@ import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
+import MapErrorModal from '../components/MapErrorModal';
 import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -22,7 +23,8 @@ const MainPage = () => {
   const [markerOpenStates, setMarkerOpenStates] = useState([]);
   const [initialstate, setInitialState] = useState(true);
   const { nowLocation } = useGeolocation();
-
+  const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
   const [locationData, setLocationData] = useState([]);
   const [categories, setCategories] = useState({
     편의점: false,
@@ -49,7 +51,7 @@ const MainPage = () => {
         minLongitude: swLng,
       };
       setInitialState(false);
-      GetPin(data, callBackFunction);
+      GetPin(data, callBackFunction, setIsOpenErrorModal);
       setIsOpenResearch(false);
       setIsLoading(true);
     } else {
@@ -103,13 +105,24 @@ const MainPage = () => {
 
   const MarkerResearch = () => {
     setIsOpenResearch(false);
-    GetPin(MmValue, callBackFunction);
+    GetPin(MmValue, callBackFunction, setIsOpenErrorModal);
   }; // 마커 데이터 재호출
 
   const callBackFunction = (data) => {
     setLocationData(data);
   };
+  // 메인 툴팁 타이머 설정
+  useEffect(() => {
+    if (showTooltip) {
+      const timer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 3000);
 
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [showTooltip]);
   return (
     <Container>
       <MainHeader />
@@ -124,7 +137,6 @@ const MainPage = () => {
         }}
         level={2} // 지도의 확대 레벨
         onBoundsChanged={handleMapChange}
-        // onDragEnd={handleMapChange}
         ref={mapRef}
       >
         <ul>
@@ -166,29 +178,31 @@ const MainPage = () => {
                 },
               }}
             />
-
-            <CustomOverlayMap
-              position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
-              xAnchor={0.5}
-              yAnchor={2.2}
-            >
-              <MainToolTip />
-            </CustomOverlayMap>
+            {showTooltip && (
+              <CustomOverlayMap
+                position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+                xAnchor={0.5}
+                yAnchor={2.2}
+              >
+                <MainToolTip />
+              </CustomOverlayMap>
+            )}
           </>
         )}
       </Map>
       {isOpenResearch && (
-        <button onClick={MarkerResearch}>
+        <div onClick={MarkerResearch}>
           <SearchButton
-            bgColor={'#FFE070'}
-            position={'absolute'}
+            background="#FFE070"
+            position="absolute"
             isOpenResearch={isOpenResearch}
             setIsOpenResearch={setIsOpenResearch}
           />
-        </button>
+        </div>
       )}
 
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
+      {isOpenErrorModal && <MapErrorModal />}
     </Container>
   );
 };
