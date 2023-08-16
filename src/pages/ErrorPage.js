@@ -25,9 +25,7 @@ const ErrorPage = ({ errorCode }) => {
             <ErrorContent>{errorConfirm(errorCode)}</ErrorContent>
           </ErrorContainer>
         </ContentBox>
-        <button onClick={handleClick}>
-          <SearchButton bgcolor="#5E7FF6" fontcolor="#ffffff" />
-        </button>
+        <SearchButton bgcolor="#5E7FF6" fontcolor="#ffffff" />
       </Container>
     </AllWrapper>
   );

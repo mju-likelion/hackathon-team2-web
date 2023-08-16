@@ -1,12 +1,16 @@
-
+import { useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
 const SearchButton = ({ bgcolor, fontcolor, position }) => {
-  return bgcolor === '#FFE070' ? (
-    <ButtonContainer position={position} onClick={markerResearch} bgcolor={bgcolor}>
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
+  return bgcolor === '#FFE070' ? (
+    <ButtonContainer position={position} bgcolor={bgcolor}>
       <ContentWrapper>
         <Research />
         <ButtonText fontcolor={fontcolor}>이 지역에서 다시 검색</ButtonText>
