@@ -9,7 +9,10 @@ import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
 import MainHeader from '../components/MainHeader';
 import MainToolTip from '../components/MainToolTip';
+
+import NoDataModal from '../components/modal/NoDataModal';
 import MapErrorModal from '../components/MapErrorModal';
+
 import SearchButton from '../components/SearchButton';
 import ZoomButton from '../components/ZoomButton';
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -22,6 +25,8 @@ const MainPage = () => {
   const [isOpenResearch, setIsOpenResearch] = useState(false);
   const [markerOpenStates, setMarkerOpenStates] = useState([]);
   const [initialstate, setInitialState] = useState(true);
+  const [modalState, setModalState] = useState(false);
+
   const { nowLocation } = useGeolocation();
   const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
@@ -59,7 +64,6 @@ const MainPage = () => {
     }
   }, [mapRef.current]);
 
-  // 최대 최소 위도 경도 -> 버튼 로직
   useEffect(() => {
     if (MmValue && isLoading) {
       setIsOpenResearch(true);
@@ -86,7 +90,7 @@ const MainPage = () => {
 
   const handleMapChange = (map) => {
     const bounds = map.getBounds();
-    map.setMaxLevel(10);
+    map.setMaxLevel(5);
     setMmValue({
       maxLatitude: bounds.getNorthEast().getLat(),
       maxLongitude: bounds.getNorthEast().getLng(),
@@ -111,6 +115,9 @@ const MainPage = () => {
 
   const callBackFunction = (data) => {
     setLocationData(data);
+    if (data.length === 0) {
+      setModalState(true);
+    }
   };
   // 메인 툴팁 타이머 설정
   useEffect(() => {
@@ -128,15 +135,14 @@ const MainPage = () => {
     <Container>
       <MainHeader />
       <Filters setCategories={setCategories} />
+      {modalState && <NoDataModal modalState={modalState} setModalState={setModalState} />}
       <Map
-        // center={{ lat: 37.52309083858311, lng: 127.02633730039574 }}
         center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
         style={{
-          // 지도의 크기
           width: '100%',
           height: '100%',
         }}
-        level={2} // 지도의 확대 레벨
+        level={2}
         onBoundsChanged={handleMapChange}
         ref={mapRef}
       >
@@ -149,11 +155,11 @@ const MainPage = () => {
                     onClick={() => handleClick(index)}
                     position={{ lat: item.latitude, lng: item.longitude }}
                     image={{
-                      src: Category(item), // 마커이미지의 주소입니다
+                      src: Category(item),
                       size: {
                         width: 24,
                         height: 24,
-                      }, // 마커이미지의 크기입니다
+                      },
                     }}
                   />
                 )}
