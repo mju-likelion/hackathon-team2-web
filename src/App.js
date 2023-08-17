@@ -32,10 +32,11 @@ export default App;
 
 const Layout = styled.div`
   max-width: 393px;
+  height: 100vh;
   margin: 0 auto;
 `;
 
 const Frame = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
