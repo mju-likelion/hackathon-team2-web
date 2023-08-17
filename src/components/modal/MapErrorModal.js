@@ -14,7 +14,7 @@ const MapErrorModal = () => {
   );
 };
 const Container = styled.div`
-  width: 284px;
+  width: 268px;
   height: 150px;
   display: flex;
   flex-direction: column;
@@ -29,11 +29,14 @@ const Container = styled.div`
 `;
 
 const ErrorImg = styled.img`
-  margin-top: 23px;
+  margin-top: 21px;
 `;
 const ErrorText = styled.p`
-  margin-top: 12px;
+  width: 164px;
+  height: 37px;
+  margin-top: 10px;
   text-align: center;
   ${({ theme }) => theme.typographies.body12}
+  color: #000000;
 `;
 export default MapErrorModal;

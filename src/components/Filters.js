@@ -13,9 +13,15 @@ const Filters = ({ setCategories }) => {
     { category: '패스트푸드', title: '패스트푸드' },
     { category: '일반대중음식', title: '기타' },
   ];
-
+  const handleScroll = (e) => {
+    if (!e.shiftKey) {
+      e.preventDefault();
+      const container = e.currentTarget;
+      container.scrollLeft += e.deltaY * 0.5;
+    }
+  };
   return (
-    <FilterContainer>
+    <FilterContainer onWheel={handleScroll}>
       {CATEGORY.map((data, index) => (
         <FilterChip filter={setCategories} key={index} category={data.category}>
           {data.title}
