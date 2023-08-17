@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-bottom: -1px;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   right: 22px;
   z-index: 99;
