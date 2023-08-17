@@ -4,6 +4,7 @@ import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
+import geoLocation from '../assets/images/geolocation.svg';
 import nowLocationLogo from '../assets/images/map-icon.svg';
 import DetailToolTip from '../components/DetailToolTip';
 import Filters from '../components/Filters';
@@ -25,7 +26,7 @@ const MainPage = () => {
   const [initialstate, setInitialState] = useState(true);
   const [modalState, setModalState] = useState(false);
 
-  const { nowLocation } = useGeolocation();
+  const { nowLocation, setNowLocation } = useGeolocation();
   const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   const [locationData, setLocationData] = useState([]);
@@ -70,6 +71,19 @@ const MainPage = () => {
     }
   }, [MmValue]);
   // 재검색 버튼 로직
+
+  // 메인 툴팁 타이머 설정
+  useEffect(() => {
+    if (showTooltip) {
+      const timer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 7000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [showTooltip]);
 
   const handleCategory = (data) => {
     const item = data.category;
@@ -117,18 +131,26 @@ const MainPage = () => {
       setModalState(true);
     }
   };
-  // 메인 툴팁 타이머 설정
-  useEffect(() => {
-    if (showTooltip) {
-      const timer = setTimeout(() => {
-        setShowTooltip(false);
-      }, 7000);
 
-      return () => {
-        clearTimeout(timer);
-      };
+  const handleCenter = () => {
+    if (nowLocation.state) {
+      setNowLocation((prev) => ({
+        ...prev,
+        center: { lat: nowLocation.center.lat + 0.0000000000001, lng: nowLocation.center.lng + 0.0000000000001 },
+        state: false,
+      }));
+
+      console.log(nowLocation);
+    } else {
+      setNowLocation((prev) => ({
+        ...prev,
+        center: { lat: nowLocation.center.lat - 0.0000000000001, lng: nowLocation.center.lng - 0.0000000000001 },
+        state: true,
+      }));
+      console.log(nowLocation);
     }
-  }, [showTooltip]);
+  };
+
   return (
     <Container>
       <MainHeader />
@@ -194,6 +216,9 @@ const MainPage = () => {
             )}
           </>
         )}
+        <GeoLocationButton onClick={handleCenter}>
+          <img src={geoLocation} alt="geolocation-img" />
+        </GeoLocationButton>
       </Map>
       {isOpenResearch && (
         <SearchButton
@@ -205,7 +230,6 @@ const MainPage = () => {
           onClick={MarkerResearch}
         />
       )}
-
       <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
       {isOpenErrorModal && <MapErrorModal />}
     </Container>
@@ -213,8 +237,24 @@ const MainPage = () => {
 };
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
+`;
+
+const GeoLocationButton = styled.button`
+  position: fixed;
+  bottom: 121px;
+  right: 18px;
+  display: flex;
+  width: 38px;
+  height: 38px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.colors.GRAY1};
+  background: #fff;
 `;
 
 export default MainPage;

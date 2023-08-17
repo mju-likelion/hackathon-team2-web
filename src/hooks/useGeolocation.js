@@ -8,6 +8,7 @@ export const useGeolocation = () => {
     },
     errMsg: null,
     isLoading: true,
+    state: false,
   });
 
   useEffect(() => {
@@ -41,5 +42,5 @@ export const useGeolocation = () => {
     }
   }, [nowLocation.center.lat, nowLocation.center.lng]);
 
-  return { nowLocation };
+  return { nowLocation, setNowLocation };
 };
