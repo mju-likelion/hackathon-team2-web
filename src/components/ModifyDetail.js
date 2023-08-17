@@ -31,6 +31,7 @@ const ModifyBox = styled.div`
 `;
 const ModifyText = styled.div`
   text-align: start;
+  color: black;
   width: 226px;
   height: 19px;
   font-size: 15px;

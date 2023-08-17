@@ -68,7 +68,6 @@ const TitleWrapper = styled.div`
 `;
 
 const ModifyTitle = styled.div`
-  width: 144px;
   height: 21px;
   font-size: 18px;
   font-weight: 700;
@@ -76,7 +75,6 @@ const ModifyTitle = styled.div`
 `;
 
 const TitleDetail = styled.div`
-  width: 230px;
   height: 16px;
   font-size: 12px;
   font-weight: 500;
