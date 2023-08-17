@@ -135,7 +135,7 @@ const MainPage = () => {
       <Filters setCategories={setCategories} />
       {modalState && <NoDataModal modalState={modalState} setModalState={setModalState} />}
       <Map
-        center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+        center={{ lat: 37.48496497372552, lng: 127.03475678137497 }}
         style={{
           width: '100%',
           height: '100%',
@@ -171,7 +171,7 @@ const MainPage = () => {
             ))}
         </ul>
 
-        {!nowLocation.isLoading && (
+        {/* {!nowLocation.isLoading && (
           <>
             <MapMarker
               position={nowLocation.center}
@@ -193,7 +193,7 @@ const MainPage = () => {
               </CustomOverlayMap>
             )}
           </>
-        )}
+        )} */}
       </Map>
       {isOpenResearch && (
         <SearchButton
