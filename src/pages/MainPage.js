@@ -198,7 +198,8 @@ const MainPage = () => {
       {isOpenResearch && (
         <SearchButton
           background="#FFE070"
-          position="absolute"
+          position="fixed"
+          font="black"
           isOpenResearch={isOpenResearch}
           setIsOpenResearch={setIsOpenResearch}
           onClick={MarkerResearch}

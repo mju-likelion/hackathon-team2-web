@@ -3,7 +3,7 @@ import { css, styled } from 'styled-components';
 
 import { ReactComponent as Research } from '../assets/images/research.svg';
 
-const SearchButton = ({ background, fontColor, position, onClick }) => {
+const SearchButton = ({ background, font, position, onClick }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -13,12 +13,12 @@ const SearchButton = ({ background, fontColor, position, onClick }) => {
     <ButtonContainer background={background} position={position} onClick={onClick}>
       <ContentWrapper>
         <Research />
-        <ButtonText fontColor={fontColor}>이 지역에서 다시 검색</ButtonText>
+        <ButtonText font={font}>이 지역에서 다시 검색</ButtonText>
       </ContentWrapper>
     </ButtonContainer>
   ) : (
     <ButtonContainer onClick={goBack} background={background}>
-      <ButtonText fontColor={fontColor}>이전 페이지로 돌아가기</ButtonText>
+      <ButtonText font={font}>이전 페이지로 돌아가기</ButtonText>
     </ButtonContainer>
   );
 };
@@ -35,9 +35,9 @@ const ButtonContainer = styled.button`
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 999px;
   ${({ position }) =>
-    position === 'absolute' &&
+    position === 'fixed' &&
     css`
-      position: absolute;
+      position: fixed;
       bottom: 68px;
       z-index: 99;
       transform: translateX(-50%);
@@ -58,6 +58,6 @@ const ButtonText = styled.div`
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ fontcolor }) => fontcolor};
+  color: ${({ font }) => font};
 `;
 export default SearchButton;
