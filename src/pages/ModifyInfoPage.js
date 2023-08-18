@@ -37,7 +37,7 @@ export default ModifyInfoPage;
 
 const ModifyContainer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: white;
   display: flex;
   flex-direction: column;
