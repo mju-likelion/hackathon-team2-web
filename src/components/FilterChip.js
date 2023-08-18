@@ -30,7 +30,6 @@ const FilterChip = ({ isChecked, children, category, filter }) => {
   }, [isChecked]);
 
   const handleClick = () => {
-    console.log('clicked');
     filter((prev) => ({
       ...prev,
       [category]: !prev[category],

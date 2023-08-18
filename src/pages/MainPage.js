@@ -140,15 +140,12 @@ const MainPage = () => {
         center: { lat: nowLocation.center.lat + 0.0000000000001, lng: nowLocation.center.lng + 0.0000000000001 },
         state: false,
       }));
-
-      console.log(nowLocation);
     } else {
       setNowLocation((prev) => ({
         ...prev,
         center: { lat: nowLocation.center.lat - 0.0000000000001, lng: nowLocation.center.lng - 0.0000000000001 },
         state: true,
       }));
-      console.log(nowLocation);
     }
   };
 
