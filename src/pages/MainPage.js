@@ -32,8 +32,8 @@ const MainPage = () => {
   const [showTooltip, setShowTooltip] = useState(true);
   const [locationData, setLocationData] = useState([]);
   const [categories, setCategories] = useState({
-    편의점: false,
-    제과점: false,
+    편의점: true,
+    제과점: true,
     한식: false,
     중식: false,
     양식: false,
@@ -156,7 +156,7 @@ const MainPage = () => {
     <>
       <Container>
         <MainHeader />
-        <Filters setCategories={setCategories} />
+        <Filters categories={categories} setCategories={setCategories} />
         {modalState && <NoDataModal modalState={modalState} setModalState={setModalState} />}
         <Map
           center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
