@@ -3,6 +3,9 @@ import { reset } from 'styled-reset';
 import './GlobalFont.css';
 const GlobalStyle = createGlobalStyle`
     ${reset};
+    :root {
+       --vh: 100%;
+    }
     body{
         padding: 0;
         margin: 0;

@@ -10,13 +10,13 @@ import ModifyInfoPage from './pages/ModifyInfoPage';
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 const App = () => {
-  const [innerHeight, setInnerHeight] = useState(0);
-
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
   useEffect(() => {
-    if (window !== 'undefined') {
-      setInnerHeight(window.innerHeight);
-    }
-  }, []);
+    setScreenSize();
+  });
 
   return (
     <ThemeProvider theme={Theme}>
@@ -42,7 +42,7 @@ export default App;
 
 const Layout = styled.div`
   max-width: 393px;
-  height: ${(props) => props.height};
+  height: calc(var(--vh, 1vh) * 100);
   margin: 0 auto;
 `;
 
