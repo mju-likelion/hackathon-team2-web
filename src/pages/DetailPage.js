@@ -13,14 +13,10 @@ import StoreDetail from '../components/StoreDetail';
 
 const DetailPage = () => {
   const { id } = useParams();
-  const [detailData, setDetailData] = useState({});
+  const [detailData, setDetailData] = useState(null);
   useEffect(() => {
-    console.log('?');
     AxiosDetail(id, setDetailData, handleError);
   }, []);
-  useEffect(() => {
-    console.log(detailData);
-  }, [detailData]);
   const handleError = (error) => {
     if (error.response.data.statusCode === 404) {
       navigate('/404Error');
@@ -33,8 +29,6 @@ const DetailPage = () => {
     return 'loading...';
   }
 
-  console.log(detailData);
-
   return (
     <>
       <AllContainer>
@@ -44,9 +38,9 @@ const DetailPage = () => {
             <StoreImgBox>
               <StoreImg src={likeLion} />
             </StoreImgBox>
-            <FindMap data={detailData.state} />
-            <StoreDetail data={detailData.state} />
-            <ModifyInfo id={detailData.id} />
+            <FindMap data={detailData} />
+            <StoreDetail data={detailData} />
+            <ModifyInfo id={id} />
           </DetailContainer>
           <DetailFooter />
         </ContentContainer>
@@ -58,6 +52,7 @@ const DetailPage = () => {
 
 const AllContainer = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -65,6 +60,10 @@ const AllContainer = styled.div`
   top: 0;
   left: 0;
   background-color: #ffffff;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const ContentContainer = styled.div`
   margin-top: 56px;
