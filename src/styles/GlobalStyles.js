@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-family: 'Noto Sans KR';
+        height: var(--vh);
     };
     a{
         text-decoration: none;

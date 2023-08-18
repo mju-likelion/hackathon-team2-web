@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
@@ -10,14 +10,11 @@ import ModifyInfoPage from './pages/ModifyInfoPage';
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 const App = () => {
-  const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
+  let vh = 0;
   useEffect(() => {
-    setScreenSize();
+    vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, []);
-
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
