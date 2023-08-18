@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
@@ -6,7 +8,7 @@ import likeLion from '../assets/images/likelion-logo.svg';
 import moreIcon from '../assets/images/seemore.svg';
 import cancelIcon from '../assets/images/small-cancel.svg';
 
-const DetailToolTip = ({ setMarkerOpenStates, data }) => {
+const DetailToolTip = ({ setMarkerOpenStates, data, categories }) => {
   const navigate = useNavigate();
 
   const closeToolTip = () => {
@@ -16,6 +18,12 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
   const getDetailInfo = () => {
     navigate(`detail/${data.id}`);
   };
+
+  useEffect(() => {
+    if (!categories[data.category]) {
+      setMarkerOpenStates([]);
+    }
+  }, [categories]);
 
   return (
     <>

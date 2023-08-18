@@ -192,7 +192,7 @@ const MainPage = () => {
                       xAnchor={0.5}
                       yAnchor={1.4}
                     >
-                      <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} />
+                      <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} categories={categories} />
                     </CustomOverlayMap>
                   )}
                 </li>
