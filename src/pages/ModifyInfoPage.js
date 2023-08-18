@@ -38,10 +38,15 @@ export default ModifyInfoPage;
 const ModifyContainer = styled.div`
   width: 100%;
   height: 100%;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 94px;
+  position: absolute;
+  z-index: 300;
+  top: 0;
+  left: 0;
 `;
 
 const ModifyBox = styled.div`

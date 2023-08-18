@@ -4,64 +4,40 @@ import { styled } from 'styled-components';
 
 import CategoryIcon from './CategoryIcon';
 
-const FilterChip = ({ children, category, filter }) => {
-  const [isCheck, setIsCheck] = useState(false);
+const categoryCheckedColor = {
+  편의점: '#FFB763',
+  제과점: '#8A6942',
+  한식: '#5DB6F5',
+  중식: '#E75A5A',
+  양식: '#33DBBD',
+  일식: '#5E7FF6',
+  패스트푸드: '#FF8A00',
+  일반대중음식: '#64557C',
+};
+
+const FilterChip = ({ isChecked, children, category, filter }) => {
   const [iconColor, setIconColor] = useState('#FFF');
   const [backgroundColor, setBackgroundColor] = useState('#FFF');
 
   useEffect(() => {
-    switch (category) {
-      case '편의점':
-        setBackgroundColor('#FFB763');
-        break;
-      case '일식':
-        setBackgroundColor('#5E7FF6');
-        break;
-      case '중식':
-        setBackgroundColor('#E75A5A');
-        break;
-      case '양식':
-        setBackgroundColor('#33DBBD');
-        break;
-      case '한식':
-        setBackgroundColor('#5DB6F5');
-        break;
-      case '제과점':
-        setBackgroundColor('#8A6942');
-        break;
-      case '일반대중음식':
-        setBackgroundColor('#64557C');
-        break;
-      case '패스트푸드':
-        setBackgroundColor('#FF8A00');
-        break;
-      default:
-        break;
+    if (isChecked) {
+      setIconColor(categoryCheckedColor[category]);
+      setBackgroundColor('#FFF');
+    } else {
+      setIconColor('#FFF');
+      setBackgroundColor(categoryCheckedColor[category]);
     }
-  }, []);
+  }, [isChecked]);
 
   const handleClick = () => {
-    setIsCheck((prev) => !prev);
-
-    if (!isCheck) {
-      setIconColor(backgroundColor);
-      setBackgroundColor('#FFF');
-      filter((prev) => ({
-        ...prev,
-        [category]: true,
-      }));
-    } else {
-      setBackgroundColor(iconColor);
-      setIconColor('#FFF');
-      filter((prev) => ({
-        ...prev,
-        [category]: false,
-      }));
-    }
+    filter((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
   };
 
   return (
-    <FilterChipContainer onClick={handleClick} $isCheck={isCheck} color={iconColor}>
+    <FilterChipContainer onClick={handleClick} $isCheck={isChecked} color={iconColor}>
       <FilterBox>
         <CategoryIcon
           category={category}
@@ -69,7 +45,7 @@ const FilterChip = ({ children, category, filter }) => {
           backgroundColor={backgroundColor}
           setBackgroundColor={setBackgroundColor}
         />
-        <FilterTitle $isCheck={isCheck} color={backgroundColor}>
+        <FilterTitle $isCheck={isChecked} color={backgroundColor}>
           {children}
         </FilterTitle>
       </FilterBox>

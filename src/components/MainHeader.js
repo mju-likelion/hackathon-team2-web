@@ -18,7 +18,7 @@ const Container = styled.div`
   height: 46px;
   position: absolute;
   top: 0;
-  z-index: 999;
+  z-index: 50;
   padding: 5px 30px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;

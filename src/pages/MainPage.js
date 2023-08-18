@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
+import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { GetPin } from '../api/GetPin';
@@ -31,8 +32,8 @@ const MainPage = () => {
   const [showTooltip, setShowTooltip] = useState(true);
   const [locationData, setLocationData] = useState([]);
   const [categories, setCategories] = useState({
-    편의점: false,
-    제과점: false,
+    편의점: true,
+    제과점: true,
     한식: false,
     중식: false,
     양식: false,
@@ -139,100 +140,104 @@ const MainPage = () => {
         center: { lat: nowLocation.center.lat + 0.0000000000001, lng: nowLocation.center.lng + 0.0000000000001 },
         state: false,
       }));
-
-      console.log(nowLocation);
     } else {
       setNowLocation((prev) => ({
         ...prev,
         center: { lat: nowLocation.center.lat - 0.0000000000001, lng: nowLocation.center.lng - 0.0000000000001 },
         state: true,
       }));
-      console.log(nowLocation);
     }
   };
 
   return (
-    <Container>
-      <MainHeader />
-      <Filters setCategories={setCategories} />
-      {modalState && <NoDataModal modalState={modalState} setModalState={setModalState} />}
-      <Map
-        center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-        level={2}
-        onBoundsChanged={handleMapChange}
-        ref={mapRef}
-      >
-        <ul>
-          {locationData &&
-            locationData.map((item, index) => (
-              <li key={item.id}>
-                {handleCategory(item) && (
-                  <MapMarker
-                    onClick={() => handleClick(index)}
-                    position={{ lat: item.latitude, lng: item.longitude }}
-                    image={{
-                      src: Category(item),
-                      size: {
-                        width: 24,
-                        height: 24,
-                      },
-                    }}
-                  />
-                )}
+    <>
+      <Container>
+        <MainHeader />
+        <Filters categories={categories} setCategories={setCategories} />
+        {modalState && <NoDataModal modalState={modalState} setModalState={setModalState} />}
+        <Map
+          center={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          level={2}
+          onBoundsChanged={handleMapChange}
+          ref={mapRef}
+        >
+          <ul>
+            {locationData &&
+              locationData.map((item, index) => (
+                <li key={item.id}>
+                  {handleCategory(item) && (
+                    <MapMarker
+                      onClick={() => handleClick(index)}
+                      position={{ lat: item.latitude, lng: item.longitude }}
+                      image={{
+                        src: Category(item),
+                        size: {
+                          width: 24,
+                          height: 24,
+                        },
+                      }}
+                    />
+                  )}
 
-                {markerOpenStates[index] && (
-                  <CustomOverlayMap position={{ lat: item.latitude, lng: item.longitude }} xAnchor={0.5} yAnchor={1.4}>
-                    <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} categories={categories} />
-                  </CustomOverlayMap>
-                )}
-              </li>
-            ))}
-        </ul>
+                  {markerOpenStates[index] && (
+                    <CustomOverlayMap
+                      position={{ lat: item.latitude, lng: item.longitude }}
+                      xAnchor={0.5}
+                      yAnchor={1.4}
+                    >
+                      <DetailToolTip data={item} setMarkerOpenStates={setMarkerOpenStates} categories={categories} />
+                    </CustomOverlayMap>
+                  )}
+                </li>
+              ))}
+          </ul>
 
-        {!nowLocation.isLoading && (
-          <>
-            <MapMarker
-              position={nowLocation.center}
-              image={{
-                src: nowLocationLogo,
-                size: {
-                  width: 60,
-                  height: 70,
-                },
-              }}
-            />
-            {showTooltip && (
-              <CustomOverlayMap
-                position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
-                xAnchor={0.5}
-                yAnchor={2.2}
-              >
-                <MainToolTip />
-              </CustomOverlayMap>
-            )}
-          </>
+          {!nowLocation.isLoading && (
+            <>
+              <MapMarker
+                position={nowLocation.center}
+                image={{
+                  src: nowLocationLogo,
+                  size: {
+                    width: 60,
+                    height: 70,
+                  },
+                }}
+              />
+              {showTooltip && (
+                <CustomOverlayMap
+                  position={{ lat: nowLocation.center.lat, lng: nowLocation.center.lng }}
+                  xAnchor={0.5}
+                  yAnchor={2.2}
+                >
+                  <MainToolTip />
+                </CustomOverlayMap>
+              )}
+            </>
+          )}
+          <GeoLocationButton onClick={handleCenter}>
+            <img src={geoLocation} alt="geolocation-img" />
+          </GeoLocationButton>
+        </Map>
+        {isOpenResearch && (
+          <SearchButton
+            background="#FFE070"
+            position="absolute"
+            font="black"
+            isOpenResearch={isOpenResearch}
+            setIsOpenResearch={setIsOpenResearch}
+            onClick={MarkerResearch}
+          />
         )}
-        <GeoLocationButton onClick={handleCenter}>
-          <img src={geoLocation} alt="geolocation-img" />
-        </GeoLocationButton>
-      </Map>
-      {isOpenResearch && (
-        <SearchButton
-          background="#FFE070"
-          position="absolute"
-          font="black"
-          isOpenResearch={isOpenResearch}
-          setIsOpenResearch={setIsOpenResearch}
-          onClick={MarkerResearch}
-        />
-      )}
-      <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
-      {isOpenErrorModal && <MapErrorModal />}
-    </Container>
+        <ZoomButton zoomIn={zoomIn} zoomOut={zoomOut} />
+        {isOpenErrorModal && <MapErrorModal />}
+        <Outlet />
+      </Container>
+    </>
   );
 };
 const Container = styled.div`

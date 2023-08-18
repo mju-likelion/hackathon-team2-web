@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import FilterChip from '../components/FilterChip';
 
-const Filters = ({ setCategories }) => {
+const Filters = ({ categories, setCategories }) => {
   const CATEGORY = [
     { category: '편의점', title: '편의점' },
     { category: '제과점', title: '제과점' },
@@ -23,7 +23,7 @@ const Filters = ({ setCategories }) => {
   return (
     <FilterContainer onWheel={handleScroll}>
       {CATEGORY.map((data, index) => (
-        <FilterChip filter={setCategories} key={index} category={data.category}>
+        <FilterChip isChecked={categories[data.category]} filter={setCategories} key={index} category={data.category}>
           {data.title}
         </FilterChip>
       ))}
