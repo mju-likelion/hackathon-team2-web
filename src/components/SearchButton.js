@@ -35,9 +35,9 @@ const ButtonContainer = styled.button`
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 999px;
   ${({ position }) =>
-    position === 'fixed' &&
+    position === 'absolute' &&
     css`
-      position: fixed;
+      position: absolute;
       bottom: 68px;
       z-index: 99;
       transform: translateX(-50%);

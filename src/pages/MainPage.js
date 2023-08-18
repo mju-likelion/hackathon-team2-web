@@ -223,7 +223,7 @@ const MainPage = () => {
       {isOpenResearch && (
         <SearchButton
           background="#FFE070"
-          position="fixed"
+          position="absolute"
           font="black"
           isOpenResearch={isOpenResearch}
           setIsOpenResearch={setIsOpenResearch}
@@ -242,7 +242,7 @@ const Container = styled.div`
 `;
 
 const GeoLocationButton = styled.button`
-  position: fixed;
+  position: absolute;
   bottom: 121px;
   right: 18px;
   display: flex;
