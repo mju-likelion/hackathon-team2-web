@@ -1,39 +1,20 @@
-import { useEffect, useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { AxiosDetail } from '../api/Detail';
 import arrow from '../assets/images/large-speech.svg';
 import likeLion from '../assets/images/likelion-logo.svg';
 import moreIcon from '../assets/images/seemore.svg';
 import cancelIcon from '../assets/images/small-cancel.svg';
 
 const DetailToolTip = ({ setMarkerOpenStates, data }) => {
-  const [detailData, setDetailData] = useState();
-
-  useEffect(() => {
-    if (detailData) {
-      navigate(`/detail/${data.id}`, { state: detailData });
-    }
-  }, [detailData]);
-
   const navigate = useNavigate();
 
   const closeToolTip = () => {
     setMarkerOpenStates([]);
   };
 
-  const getDetailInfo = async () => {
-    AxiosDetail(data.id, setDetailData, handleError);
-  };
-
-  const handleError = (error) => {
-    if (error.response.data.statusCode === 404) {
-      navigate('/404Error');
-    } else if (error.response.data.statusCode === 500) {
-      navigate('/500Error');
-    }
+  const getDetailInfo = () => {
+    navigate(`detail/${data.id}`);
   };
 
   return (

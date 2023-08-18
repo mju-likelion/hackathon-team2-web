@@ -22,9 +22,11 @@ const App = () => {
         <Layout height={innerHeight}>
           <Frame>
             <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/detail/:id" element={<DetailPage />} />
-              <Route path="/detail/:id/modify" element={<ModifyInfoPage />} />
+              <Route path="/" element={<MainPage />}>
+                <Route path="detail/:id" element={<DetailPage />}>
+                  <Route path="modify" element={<ModifyInfoPage />} />
+                </Route>
+              </Route>
               <Route path="/404Error" element={<ErrorPage errorCode="404" />} />
               <Route path="/500Error" element={<ErrorPage errorCode="500" />} />
             </Routes>

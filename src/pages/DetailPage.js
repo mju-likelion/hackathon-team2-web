@@ -1,6 +1,9 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { AxiosDetail } from '../api/Detail';
 import likeLion from '../assets/images/large-likelion-logo.svg';
 import DetailFooter from '../components/DetailFooter';
 import DetailHeader from '../components/DetailHeader';
@@ -9,36 +12,59 @@ import ModifyInfo from '../components/ModifyInfo';
 import StoreDetail from '../components/StoreDetail';
 
 const DetailPage = () => {
-  const location = useLocation();
   const { id } = useParams();
+  const [detailData, setDetailData] = useState({});
+  useEffect(() => {
+    console.log('?');
+    AxiosDetail(id, setDetailData, handleError);
+  }, []);
+  useEffect(() => {
+    console.log(detailData);
+  }, [detailData]);
+  const handleError = (error) => {
+    if (error.response.data.statusCode === 404) {
+      navigate('/404Error');
+    } else if (error.response.data.statusCode === 500) {
+      navigate('/500Error');
+    }
+  };
+
+  if (!detailData) {
+    return 'loading...';
+  }
+
+  console.log(detailData);
 
   return (
-    <TestMobile>
+    <>
       <AllContainer>
         <DetailHeader>상세정보</DetailHeader>
         <ContentContainer>
           <DetailContainer>
             <StoreImgBox>
-              <StoreImg src={likeLion}></StoreImg>
+              <StoreImg src={likeLion} />
             </StoreImgBox>
-            <FindMap data={location.state} />
-            <StoreDetail data={location.state} />
-            <ModifyInfo id={id} />
+            <FindMap data={detailData.state} />
+            <StoreDetail data={detailData.state} />
+            <ModifyInfo id={detailData.id} />
           </DetailContainer>
           <DetailFooter />
         </ContentContainer>
       </AllContainer>
-    </TestMobile>
+      <Outlet />
+    </>
   );
 };
-const TestMobile = styled.div`
-  margin: auto;
-  width: 100%;
-  height: 1072px;
-`;
+
 const AllContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
 `;
 const ContentContainer = styled.div`
   margin-top: 56px;

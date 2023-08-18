@@ -42,6 +42,10 @@ const ModifyContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 94px;
+  position: absolute;
+  z-index: 300;
+  top: 0;
+  left: 0;
 `;
 
 const ModifyBox = styled.div`
