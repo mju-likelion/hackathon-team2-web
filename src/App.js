@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 
@@ -8,11 +10,19 @@ import ModifyInfoPage from './pages/ModifyInfoPage';
 import GlobalStyle from './styles/GlobalStyles';
 import { Theme } from './styles/Theme';
 const App = () => {
+  const [innerHeight, setInnerHeight] = useState(0);
+
+  useEffect(() => {
+    if (window !== 'undefined') {
+      setInnerHeight(window.innerHeight);
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Router>
-        <Layout>
+        <Layout height={innerHeight}>
           <Frame>
             <Routes>
               <Route path="/" element={<MainPage />} />
@@ -32,7 +42,7 @@ export default App;
 
 const Layout = styled.div`
   max-width: 393px;
-  height: 100vh;
+  height: ${(props) => props.height};
   margin: 0 auto;
 `;
 
