@@ -9,7 +9,7 @@ import likeLion from '../assets/images/likelion-logo.svg';
 import moreIcon from '../assets/images/seemore.svg';
 import cancelIcon from '../assets/images/small-cancel.svg';
 
-const DetailToolTip = ({ setMarkerOpenStates, data }) => {
+const DetailToolTip = ({ setMarkerOpenStates, data, categories }) => {
   const [detailData, setDetailData] = useState();
 
   useEffect(() => {
@@ -17,6 +17,12 @@ const DetailToolTip = ({ setMarkerOpenStates, data }) => {
       navigate(`/detail/${data.id}`, { state: detailData });
     }
   }, [detailData]);
+
+  useEffect(() => {
+    if (!categories[data.category]) {
+      setMarkerOpenStates([]);
+    }
+  }, [categories]);
 
   const navigate = useNavigate();
 
