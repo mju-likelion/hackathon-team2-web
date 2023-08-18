@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import Cancle from '../../assets/images/large-cancel.svg';
+import cancelIcon from '../../assets/images/middle-cancel.svg';
 
 const NoDataModal = ({ setModalState }) => {
   const handleClick = () => {
@@ -8,9 +8,9 @@ const NoDataModal = ({ setModalState }) => {
   };
   return (
     <ModalContainer>
-      <CancleButton onClick={handleClick}>
-        <img src={Cancle} alt="cancle-img" />
-      </CancleButton>
+      <CancelButton onClick={handleClick}>
+        <img src={cancelIcon} alt="cancle-img" />
+      </CancelButton>
       <ModalBox>
         <ModalTitle>앗! 정보를 가져올 수 없어요!</ModalTitle>
         <ModalContent>
@@ -26,7 +26,7 @@ export default NoDataModal;
 
 const ModalContainer = styled.div`
   display: inline-flex;
-  padding: 14px 20px 32px 20px;
+  padding: 15px 12px 26px 12px;
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
@@ -42,12 +42,13 @@ const ModalContainer = styled.div`
 const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 17px;
+  margin: 9px 0 10px 0;
 `;
 
-const CancleButton = styled.button`
+const CancelButton = styled.button`
+  width: 16px;
+  height: 16px;
   align-self: flex-end;
 `;
 
@@ -57,6 +58,7 @@ const ModalTitle = styled.div`
   font-size: 15px;
   font-weight: 700;
   line-height: 18px;
+  margin-bottom: 17px;
 `;
 
 const ModalContent = styled.div`

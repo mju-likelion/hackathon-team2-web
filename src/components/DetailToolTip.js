@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { AxiosDetail } from '../api/Detail';
-import cancelIcon from '../assets/images/cancel.svg';
 import arrow from '../assets/images/large-speech.svg';
 import likeLion from '../assets/images/likelion-logo.svg';
 import moreIcon from '../assets/images/seemore.svg';
+import cancelIcon from '../assets/images/small-cancel.svg';
 
 const DetailToolTip = ({ setMarkerOpenStates, data }) => {
   const [detailData, setDetailData] = useState();
