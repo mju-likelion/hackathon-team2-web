@@ -16,7 +16,7 @@ const App = () => {
   };
   useEffect(() => {
     setScreenSize();
-  });
+  }, []);
 
   return (
     <ThemeProvider theme={Theme}>
