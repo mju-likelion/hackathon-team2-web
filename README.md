@@ -48,7 +48,7 @@ $ yarn start
 ```
 
 <div align=center>
-  <h2>Stacks</h2>
+  <h2>🐟 Stacks</h2>
   
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
@@ -70,17 +70,18 @@ $ yarn start
 </div>
 
 <div align=center>
-	<h2>🐹 Developers</h2>
-</div>
+	<h1>🐹 Developers</h1>
 
-|<img src="https://github.com/wwweric12.png" width="80">|<img src="https://github.com/constantly-dev.png" width="80">|
-|:---:|:---:|
-|[김동영](https://github.com/wwweric12)|[이진혁](https://github.com/constantly-dev)
-|FrontEnd|FrontEnd|
+|<img src="https://github.com/hy5sun.png" width="80">|<img src="https://github.com/zelkovaria.png" width="80">|<img src="https://github.com/wwweric12.png" width="80">|<img src="https://github.com/constantly-dev.png" width="80">|<img src="https://github.com/mju-likelion/hackathon-team2-server/assets/84787653/cd4de8e6-b684-489a-be02-ec2eccd5a613" width="80">|
+|:---:|:---:|:---:|:---:|:---:|
+|[김효선](https://github.com/hy5sun)|[정혜인](https://github.com/zelkovaria)|[김동영](https://github.com/wwweric12)|[이진혁](https://github.com/constantly-dev)|김소현|
+|BackEnd|BackEnd|FrontEnd|FrontEnd|Designer|
+
+ 
+</div>
 
 <div align=center>
-	<h2>Convention</h2>
-</div>
+	<h2>📠 Convention</h2>
 
 ### 🤝 Branch Naming Convention
 
@@ -102,5 +103,6 @@ $ yarn start
 | fix         | 버그 수정, 예외 케이스 대응, 기능 개선   |
 | docs        | README.md 작성, 주석 작성   |
 | chore       | 기타 작업  |
+</div>
 
 
