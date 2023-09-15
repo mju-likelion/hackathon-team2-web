@@ -1,6 +1,6 @@
 <div align=center>
 	<img src="https://capsule-render.vercel.app/api?type=waving&color=B4EEB4&height=200&section=header&text=team2-web🐲%20&fontSize=80" />	
-</div>
+	<img src="https://github.com/mju-likelion/hackathon-team2-server/assets/84787653/1d7c8813-a7a3-49d2-b8cd-26e0c7ab3536" />
 
 <img src="https://github.com/mju-likelion/hackathon-team2-server/assets/84787653/b289c179-6a0d-42a0-ae58-f9bf37aa426e"  width="250" height="450"/>
 <img src="https://github.com/mju-likelion/hackathon-team2-server/assets/84787653/8736b887-529a-455e-ace7-2ccf4e5492b3"  width="250" height="450"/>
@@ -33,7 +33,7 @@
 
 
 <div align=center>
-  <h2>How to start?</h2>
+	<h2>🤔 How to start?</h2>
 </div>
 
 ```bash
